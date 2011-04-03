@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:application="http://java.sun.com/xml/ns/javaee/application_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/application_5.xsd" id="Application_ID" version="5">
+  <display-name> VenteEnLigne</display-name>
+  <module>
+    <ejb>VenteEnLigneEJB.jar</ejb>
+  </module>
+  <module>
+    <web>
+      <web-uri>VenteEnLigneWeb.war</web-uri>
+      <context-root>VenteEnLigneWeb</context-root>
+    </web>
+  </module>
+  <module>
+    <java>VenteEnLigneClient.jar</java>
+  </module>
+  <module>
+    <web>
+      <web-uri>VenteEnLigneWebStruts2.war</web-uri>
+      <context-root>VenteEnLigneWebStruts2</context-root>
+    </web>
+  </module>
+  <module>
+    <web>
+      <web-uri>VenteEnLigneWebJSF2.war</web-uri>
+      <context-root>VenteEnLigneWebJSF2</context-root>
+    </web>
+  </module>
+   <module>
+    <web>
+      <web-uri>VenteEnLigneFlexGranite.war</web-uri>
+      <context-root>VenteEnLigneFlexGranite</context-root>
+    </web>
+  </module>
+</application>
