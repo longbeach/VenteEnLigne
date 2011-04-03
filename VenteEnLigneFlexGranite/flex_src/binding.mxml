@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Panel xmlns:mx="http://www.adobe.com/2006/mxml" width="400" height="300">
+
+<!-- Fichier non utilisé par l'application. Sert uniquement à illustrer le concept de binding -->
+
+<mx:TextInput id="champ1" text=""/>
+<mx:Label id="Label1" text="Nombre de caractères: {champ1.text.length}"/>
+<mx:Label id="Label2" text="Contenu de champ1: {champ1.text}"/>	
+	
+</mx:Panel>

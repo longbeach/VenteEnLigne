@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Panel xmlns:mx="http://www.adobe.com/2006/mxml" layout="vertical" width="600" height="530"
+	horizontalAlign="center" title="Modification du profil"  titleStyleName="soustitreStyle">
+
+	<mx:Script>
+	<![CDATA[
+		import com.eni.dvtejb.metier.entities.Adresse;
+		import com.eni.dvtejb.metier.entities.Client;
+		import mx.core.Application;
+		import mx.rpc.events.ResultEvent;
+     	import mx.rpc.events.FaultEvent;
+     	import mx.rpc.AsyncToken;
+	 	import mx.rpc.AsyncResponder;
+	 	import mx.rpc.IResponder;
+	 	import mx.controls.Alert;
+		
+ 	 	[Bindable]
+		public var adresseProfil : Adresse = new Adresse();  ;
+		[Bindable]
+		public var clientProfil : Client = new Client();  
+		
+		 private function updateProfil():void {     
+     	    Alert.show("clientprenom.text vaut : " + clientprenom.text);
+     	 
+	     	 clientProfil.prenom = clientprenom.text;
+	     	 clientProfil.nom = clientnom.text;
+	     	 clientProfil.login = clientlogin.text;
+	     	 clientProfil.password = clientpwd.text;
+	     	 clientProfil.email = clientemail.text;	     	
+	     	 clientProfil.fax  = Number(clientfax.text);		     
+	     	 clientProfil.telephone =  Number(clienttel.text);
+	     	 clientProfil.titre = clienttitre.text;	     	 
+	     	 adresseProfil.codepostal =  Number(clientcp.text);
+	     	 adresseProfil.departement = clientdpt.text;	     
+	     	 adresseProfil.numero =  Number(clientnum.text);
+	     	 adresseProfil.pays = clientpays.text;
+	     	 adresseProfil.rue = clientrue.text;     	 
+	     	 adresseProfil.ville = clientville.text;
+ 
+        	var token:AsyncToken = srv.updateClient(clientProfil, adresseProfil);	  		  		
+	  		var myResponder : AsyncResponder = new AsyncResponder(resultHandler, faultHandler);	  	
+	  		token.addResponder(myResponder);
+       }
+       
+        private function resultHandler( event:ResultEvent, token:AsyncToken):void {
+         	var profilMAJ:Boolean =  event.result as Boolean;
+
+			if (profilMAJ) {
+				 Alert.show("Profil modifie!");				 				 
+			} else {
+				Alert.show("Echec de la modification !");
+			}
+	}
+ 
+    public function faultHandler(error:Object, token:AsyncToken):void {
+    }
+				
+		]]>
+	</mx:Script>
+	
+	 <mx:RemoteObject id="srv" showBusyCursor="true" destination="destFacadeBean" />
+		
+	<mx:Form  width="400">	
+	<!--	 <mx:Accordion  selectedIndex="0">	
+		  <mx:VBox label="Informations generales" horizontalAlign="left">-->
+			<mx:FormItem label="Prenom:" required="true" horizontalAlign="left">
+				<mx:TextInput id="clientprenom" text="{Application.application.loginLog.client.prenom}"/>
+			</mx:FormItem>
+			<mx:FormItem label="Nom:" required="true"  horizontalAlign="left" >
+				<mx:TextInput  id="clientnom" text="{Application.application.loginLog.client.nom}"/>
+			</mx:FormItem>
+			<mx:FormItem label="Login:" required="true"  horizontalAlign="left"  >
+				<mx:TextInput  id="clientlogin" text="{Application.application.loginLog.client.login}"/>
+			</mx:FormItem>
+			<mx:FormItem label="Password:" required="true"  horizontalAlign="left">
+				<mx:TextInput id="clientpwd"  text="{Application.application.loginLog.client.password}" />
+			</mx:FormItem>
+			<mx:FormItem label="Email:" required="true"  horizontalAlign="left">
+				<mx:TextInput  id="clientemail" text="{Application.application.loginLog.client.email}"/>
+			</mx:FormItem>
+			<mx:FormItem label="Fax:" required="true"  horizontalAlign="left">
+				<mx:TextInput  id="clientfax" text="{Application.application.loginLog.client.fax}"/>
+			</mx:FormItem>
+			<mx:FormItem label="Numero de telephone:" required="true"  horizontalAlign="left">
+				<mx:TextInput  id="clienttel" text="{Application.application.loginLog.client.telephone}"/>
+			</mx:FormItem>
+			<mx:FormItem label="Titre:" required="true"  horizontalAlign="left">
+				<mx:TextInput  id="clienttitre" text="{Application.application.loginLog.client.titre}"/>
+			</mx:FormItem>
+  		<!--  </mx:VBox>
+		  <mx:VBox label="Adresse">		 -->
+			<mx:FormItem label="Code postal:" required="true"  horizontalAlign="left">
+				<mx:TextInput  id="clientcp" text="{Application.application.loginLog.adresse.codepostal}"/>
+			</mx:FormItem>
+			<mx:FormItem label="Departement:" required="true"  horizontalAlign="left">
+				<mx:TextInput  id="clientdpt" text="{Application.application.loginLog.adresse.departement}"/>
+			</mx:FormItem>
+			<mx:FormItem label="Numero:" required="true"  horizontalAlign="left">
+				<mx:TextInput  id="clientnum" text="{Application.application.loginLog.adresse.numero}"/>
+			</mx:FormItem>
+			<mx:FormItem label="Pays:" required="true"  horizontalAlign="left">
+				<mx:TextInput  id="clientpays" text="{Application.application.loginLog.adresse.pays}"/>
+			</mx:FormItem>
+			<mx:FormItem label="Rue:" required="true"  horizontalAlign="left">
+				<mx:TextInput  id="clientrue" text="{Application.application.loginLog.adresse.rue}"/>
+			</mx:FormItem>
+			<mx:FormItem label="Ville:" required="true"  horizontalAlign="left">
+				<mx:TextInput  id="clientville" text="{Application.application.loginLog.adresse.ville}"/>
+			</mx:FormItem>
+		<mx:FormItem  horizontalAlign="center">
+			<mx:Button label="Modifier" click="updateProfil()" />
+		</mx:FormItem>
+	</mx:Form>
+</mx:Panel>

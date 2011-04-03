@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<mx:Panel xmlns:mx="http://www.adobe.com/2006/mxml" width="490" height="500">
+<!-- Ce composant s'affiche dans une pop-up -->
+	<mx:Script>
+		<![CDATA[
+			
+		import mx.managers.PopUpManager;
+		import com.eni.dvtejb.metier.entities.Article;
+		import mx.rpc.AsyncToken;
+		import mx.rpc.AsyncResponder;
+		import mx.rpc.IResponder;
+		import mx.rpc.events.ResultEvent;
+		import mx.rpc.events.FaultEvent;
+		import mx.controls.Alert;
+
+		[Bindable]
+		public var articleDetails:Article;
+		
+		private function ajouterArticleAuPanier():void {  		  			  	
+	  		var laQuantite:Number = qtite.value;  		  		
+	  		Alert.show("articleDetails.nom vaut : " + articleDetails.nom); 	  			
+		  	var token:AsyncToken = srvPanier.ajouterArticle(articleDetails, laQuantite);	  	
+		  	var myResponder : AsyncResponder = new AsyncResponder(resultHandler, faultHandler);
+		  	token.addResponder(myResponder);	 	
+		} 	
+		
+		private function resultHandler( event:ResultEvent, token:AsyncToken):void {			
+			confirmation.text = "Article ajouté au panier";						
+		}
+	 
+	    public function faultHandler(error:Object, token:AsyncToken):void {
+	    	Alert.show("Erreur : " + error.toString());    
+	    }						
+		]]>
+	</mx:Script>	
+	
+	<mx:RemoteObject id="srvPanier" showBusyCursor="true" destination="destPanierBean" />
+	
+	<mx:HBox horizontalAlign="center" width="100%">
+		<mx:Label text="Vente en Ligne" color="red" fontWeight="bold"/>
+	</mx:HBox>
+	
+	<mx:VBox width="100%" height="100%" x="10" y="37" paddingLeft="5" paddingRight="5"
+		horizontalAlign="center" horizontalScrollPolicy="off" verticalGap="2" >		
+		<mx:Form  paddingTop="0" paddingBottom="0" paddingLeft="0" paddingRight="0"  borderStyle="solid">
+		   <mx:FormHeading label="Détails de l'article"/>
+
+			<mx:FormItem label="Article ID:">
+				<mx:Label text="{articleDetails.articleid}"/>
+			</mx:FormItem>
+			<mx:FormItem label="Produit:">
+				<mx:Label text="{articleDetails.produitFk.nom}"/>
+			</mx:FormItem>
+			<mx:FormItem label="Nom:">			
+				<mx:Label id="article" text="{articleDetails.nom}" width="300"/>
+			</mx:FormItem>
+			<mx:FormItem label="Prix unitaire:">
+				<mx:Label text="{articleDetails.prix}"/>
+			</mx:FormItem>
+			<mx:FormItem label="Quantité en stock:" >
+				<mx:Label text="{articleDetails.stockFK.quantite}"/>
+			</mx:FormItem>	
+		    <mx:FormItem label="Image:" >
+				<mx:Image id="img" maxWidth="100" maxHeight="123" source="{articleDetails.image}"/>
+			</mx:FormItem>
+			<mx:FormItem label="Quantité souhaitée:">
+				<mx:NumericStepper id="qtite" maxWidth="100" maxHeight="123" />
+			</mx:FormItem>
+		</mx:Form>
+	</mx:VBox>		
+	
+	<mx:ControlBar width="100%" paddingBottom="15" horizontalAlign="center">
+		<mx:Button id="panierBouton" label="Ajouter au panier" click="ajouterArticleAuPanier()"
+			icon="@Embed('../images/ajouterPanier.png')" height="36"/>	
+		<mx:Button label="Fermer" click="PopUpManager.removePopUp(this)" width="123"
+			icon="@Embed('../images/fermer.png')"/>				
+	</mx:ControlBar>
+	<mx:HBox   >		
+		<mx:Label id="confirmation" text=""/>
+	</mx:HBox>
+	
+</mx:Panel>

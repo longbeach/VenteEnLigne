@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<mx:Form xmlns:mx="http://www.adobe.com/2006/mxml" width="266" height="550"  >
+
+	<!--http://livedocs.adobe.com/flex/3/html/help.html?content=createevents_3.html -->
+    <mx:Metadata>
+        [Event(name="loginSucces", type="flash.events.Event")]
+    </mx:Metadata>
+    
+    <mx:Script>
+    <![CDATA[
+    
+     import mx.rpc.events.ResultEvent;
+     import mx.rpc.events.FaultEvent;
+     import mx.utils.ObjectUtil;
+     import mx.controls.Alert;
+     import com.eni.dvtejb.metier.entities.Utilisateur;
+     import com.eni.dvtejb.metier.entities.Adresse;
+     import mx.rpc.AsyncToken;
+	 import mx.rpc.AsyncResponder;
+	 import mx.rpc.IResponder;
+	 import mx.core.Application;
+    
+     [Bindable]
+     public var client:Utilisateur;
+    
+     [Bindable]
+     public var adresse:Adresse;
+     
+     [Bindable]
+     public var titres: Array = [ {label:"Mr", data:1}, {label:"Mme", data:2}, {label:"Mlle", data:3} ];
+    
+     private function connexion():void {     
+        	var token:AsyncToken = srv.findUtilisateurByLoginPwd(userName.text, password.text);	  		  		
+	  		var myResponder : AsyncResponder = new AsyncResponder(resultHandler, faultHandler);	  	
+	  		token.addResponder(myResponder);
+     }
+       
+     private function resultHandler( event:ResultEvent, token:AsyncToken):void {
+         	var utilisateur:Utilisateur= event.result as Utilisateur;	
+         	
+			if (null != utilisateur) {
+				 Alert.show("Connexion reussie!");
+				  dispatchEvent(new Event("loginSucces"));         				 
+				 client =    utilisateur;  				 
+				 adresse = client.adresseFk;				 				 
+			} else {
+				Alert.show("Echec de la connexion !");
+			}
+	}
+ 
+    public function faultHandler(error:Object, token:AsyncToken):void {
+    	Alert.show("Erreur vaut : " + error.toString());
+    }	    
+    ]]>
+    </mx:Script>
+
+ <mx:RemoteObject id="srv" showBusyCursor="true" destination="destFacadeBean" />
+
+    <mx:states>
+	   <mx:State name="Inscription" id="inscr">
+	    <mx:SetProperty target="{LoginForm}" name="height" value="540" />
+	    <mx:SetProperty target="{Application.application.panelLogin}" name="title" value="Rentrez vos informations" />
+	     
+	      <mx:AddChild  position="lastChild" creationPolicy="all">	             
+	             <mx:FormItem id="nom" label="Nom:" required="true">
+	                <mx:TextInput/>
+	             </mx:FormItem>	 
+	       </mx:AddChild>	
+	       <mx:AddChild  position="lastChild" creationPolicy="all">	
+	             <mx:FormItem id="prenom" label="Prénom:" required="true">
+	                <mx:TextInput/>
+	             </mx:FormItem>	 	             
+	        </mx:AddChild>	
+	         <mx:AddChild  position="lastChild" creationPolicy="all">	
+	         <mx:FormItem id="tel" label="Téléphone:" required="true">
+	                <mx:TextInput/>
+	             </mx:FormItem>	
+	          </mx:AddChild>	
+	          <mx:AddChild position="lastChild" creationPolicy="all">	  
+	              <mx:FormItem id="titre" label="Titre:" required="true">
+	                 <mx:ComboBox id="titreCombo" dataProvider="{titres}" selectedIndex="0" />  
+	             </mx:FormItem>	 
+	          </mx:AddChild>	
+	          <mx:AddChild  position="lastChild" creationPolicy="all">	     
+	              <mx:FormItem id="Fax" label="Fax:" required="true">
+	                <mx:TextInput/>
+	             </mx:FormItem>	  
+	           </mx:AddChild>	 
+	           <mx:AddChild  position="lastChild" creationPolicy="all">	
+	              <mx:FormItem id="Email" label="Email:" required="true">
+	                <mx:TextInput/>
+	             </mx:FormItem>	  
+	           </mx:AddChild>	
+	           <mx:AddChild  position="lastChild" creationPolicy="all">	
+	              <mx:FormItem id="codepostal" label="Code postal:" required="true">
+	                <mx:TextInput/>
+	             </mx:FormItem>	  
+	           </mx:AddChild>	
+	           <mx:AddChild  position="lastChild" creationPolicy="all">	
+	              <mx:FormItem id="departement" label="Département:" required="true">
+	                <mx:TextInput/>
+	             </mx:FormItem>	 
+	           </mx:AddChild>	
+	           <mx:AddChild  position="lastChild" creationPolicy="all">	 
+	              <mx:FormItem id="numero" label="Numéro:" required="true">
+	                <mx:TextInput/>
+	             </mx:FormItem>	 
+	           </mx:AddChild>	
+	          <mx:AddChild  position="lastChild" creationPolicy="all">	 
+	              <mx:FormItem id="pays" label="Pays:" required="true">
+	                <mx:TextInput/>
+	             </mx:FormItem>	 
+	          </mx:AddChild>	
+	          <mx:AddChild  position="lastChild" creationPolicy="all">	 
+	              <mx:FormItem id="rue" label="Rue:" required="true">
+	                <mx:TextInput/>
+	             </mx:FormItem>	
+	         </mx:AddChild>	
+	         <mx:AddChild  position="lastChild" creationPolicy="all">	
+	             <mx:FormItem id="ville" label="Ville:" required="true">
+	                <mx:TextInput/>
+	             </mx:FormItem>	  
+	         </mx:AddChild>	
+	         <mx:AddChild  position="lastChild" creationPolicy="all">	  
+	              <mx:FormItem>
+	                <mx:Button label="Soumettre"  /> 
+	             </mx:FormItem>	 	             	     
+	         </mx:AddChild>		        
+            
+	         <mx:AddChild  position="lastChild">
+                <mx:LinkButton label="Retour" click="currentState=''"/>
+            </mx:AddChild>
+           
+
+	       <mx:RemoveChild target="{leheading}"/>
+	       <mx:RemoveChild target="{loginBtn}"/>
+	       <mx:RemoveChild target="{lienInscription}"/>  
+		</mx:State>
+   </mx:states>
+   
+   <mx:transitions>
+	<mx:Transition fromState="*" toState="Inscription">
+		<mx:Fade target="{Application.application.panelLogin}"/>
+	</mx:Transition>
+   </mx:transitions>
+             
+    <mx:FormHeading id="leheading" label="Formulaire de connexion" />
+    <mx:FormItem label="Login:" required="true" >
+            <mx:TextInput id="userName" text="log1"/>
+    </mx:FormItem>
+    <mx:FormItem label="Password:" required="true">
+        <mx:TextInput id="password" displayAsPassword="true"  text="pwd1"/>
+    </mx:FormItem>
+    <mx:FormItem width="237">
+        <mx:Button id="loginBtn" label="Login" icon="@Embed(source='../images/login.png')"
+          enabled="{(userName.text.length == 0 || password.text.length == 0) ? false : true}"
+          toolTip="{loginBtn.enabled == true ? 'Cliquez pour soumettre' : 'Entrez le login et le password'}" 
+          click="connexion()"  width="112" height="45"/>    
+    </mx:FormItem>
+    
+       <mx:LinkButton id="lienInscription" label="S'inscrire"  height="20" click="currentState='Inscription'"/>      
+</mx:Form>

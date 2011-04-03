@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<mx:Panel xmlns:mx="http://www.adobe.com/2006/mxml" layout="vertical" width="400" height="300"
+	 creationComplete="init()" title="Panier" horizontalAlign="center" >
+
+<mx:Script>
+	<![CDATA[
+	  import mx.core.Application;
+	  import mx.collections.ArrayCollection
+	  import mx.controls.Alert;
+	  import com.eni.dvtejb.metier.services.ArticlePanier;
+	  import com.eni.dvtejb.metier.entities.Article;
+	  import modeles.ArticlePanierModele;
+	  import mx.rpc.events.ResultEvent;
+      import mx.rpc.events.FaultEvent;
+      import mx.rpc.AsyncToken;
+	  import mx.rpc.AsyncResponder;
+	  import mx.rpc.IResponder;
+
+	  [Bindable]
+	  private var articlesPanier:ArrayCollection = new ArrayCollection();
+	  
+	  [Bindable]
+	  private var articlesPanierModele:ArrayCollection = new ArrayCollection();
+	  
+	  [Bindable]
+	  public var mttTotal:Number = 0;
+	 
+ 	private function init():void { 		
+ 		var token:AsyncToken  = srvPanier.getPanier(); 			
+		var myResponder : AsyncResponder = new AsyncResponder(resultHandler, faultHandler);
+		token.addResponder(myResponder);		
+		calculMttTotal();		
+ 	} 
+ 	
+ 	private function calculMttTotal():void { 
+ 		
+ 		var token2:AsyncToken = srvPanier.getMontantTotal();
+		var myResponder2 : AsyncResponder = new AsyncResponder(resultMttTotalHandler, faultHandler);
+		token2.addResponder(myResponder2);
+ 	}
+ 		 	
+	 private function resultHandler(event:ResultEvent, token:AsyncToken):void {		 			
+			articlesPanier = event.result as ArrayCollection;	
+			  var index:int;
+			 			
+			for ( index = 0; index  < articlesPanier.length; index ++){
+				var artPanierModele:ArticlePanierModele = new ArticlePanierModele();
+				artPanierModele.articleId = articlesPanier[index].article.articleid;
+				artPanierModele.articleNom = articlesPanier[index].article.nom;
+				artPanierModele.articlePrix = articlesPanier[index].article.prix;
+				artPanierModele.quantite = articlesPanier[index].quantite;
+				artPanierModele.ssTotal = articlesPanier[index].quantite * articlesPanier[index].article.prix;
+				articlesPanierModele.addItem(artPanierModele);
+			}		
+	}
+	
+	private function resultMttTotalHandler( event:ResultEvent, token:AsyncToken):void {		 			
+			mttTotal = event.result as Number;	
+			lemttTotal.text = String(mttTotal);			 	
+	}
+	 
+    public function faultHandler(error:Object, token:AsyncToken):void {
+    	Alert.show("Erreur vaut : " + error.toString());    
+    }	
+    
+    // Supprime un article du panier    
+    public function supprimerArticlePanier():void{  
+	    var artPanierModele:ArticlePanierModele = ArticlePanierModele(listeDesArticlesPanier.selectedItem);    	    	
+	    var artId:Number = artPanierModele.articleId;
+		var articleP: ArticlePanier;
+		var index:int;			 			
+			for ( index = 0; index  < articlesPanier.length; index ++){
+				articleP = articlesPanier[index];
+				if (artId == articleP.article.articleid) {
+					break;
+				}
+			}
+		
+		var token:AsyncToken  = srvPanier.supprimerArticle(articleP); 			
+		var myResponder : AsyncResponder = new AsyncResponder(resultSuppressionHandler, faultHandler);
+		token.addResponder(myResponder);   
+		
+		//recalcul du montant total
+		calculMttTotal(); 	 
+    }
+    
+     private function resultSuppressionHandler( event:ResultEvent, token:AsyncToken):void {		 			
+			 articlesPanierModele.removeItemAt(listeDesArticlesPanier.selectedIndex); 
+    	  if(listeDesArticlesPanier.selectedIndex==0){ 
+    	  	  listeDesArticlesPanier.selectable=false; 
+    	  }    		
+	}
+	
+	 public function viderPanier():void{  	  
+		var token:AsyncToken  = srvPanier.viderPanier(); 			
+		var myResponder : AsyncResponder = new AsyncResponder(resultViderHandler, faultHandler);
+		token.addResponder(myResponder);   		
+		//recalcul du montant total
+		calculMttTotal(); 	 
+    }
+    
+      private function resultViderHandler( event:ResultEvent, token:AsyncToken):void {		 			
+			 articlesPanierModele.removeAll();    	 	
+	}
+	 	 		
+	]]>
+</mx:Script>
+
+	<mx:RemoteObject id="srvPanier" showBusyCursor="true" destination="destPanierBean" />
+
+<mx:DataGrid id="listeDesArticlesPanier" dataProvider="{articlesPanierModele}" rowHeight="35" width="100%" height="100%"  >
+	    <mx:columns>    	
+	    	<mx:DataGridColumn headerText="Article ID" dataField="articleId"  />
+	    	<mx:DataGridColumn headerText="Nom article" dataField="articleNom" />
+	    	<mx:DataGridColumn headerText="Prix unitaire" dataField="articlePrix" id="leprix" />	    	
+	    	<mx:DataGridColumn headerText="Quantité" dataField="quantite" id="laQtite"/>
+	    	<mx:DataGridColumn headerText="Sous-total" dataField="ssTotal" />	
+	    	<mx:DataGridColumn headerText=""   >
+			    <mx:itemRenderer>
+			          <mx:Component>
+		                <mx:HBox xmlns:mx="http://www.adobe.com/2006/mxml" horizontalAlign="center">
+	                      <mx:Script>
+	                          <![CDATA[
+	                              import mx.controls.Alert;
+	                              import mx.core.Application;
+	                              private function supprimerArtPanier():void{	
+	                              	outerDocument.supprimerArticlePanier();                             		                                 
+	                              }
+	                          ]]>
+	                      </mx:Script>
+		                 <mx:Button label="Supprimer"  click="supprimerArtPanier()" icon="@Embed('../images/poubelle.gif')" />
+		                </mx:HBox>
+			          </mx:Component>
+			    </mx:itemRenderer>
+			</mx:DataGridColumn>     	
+	    </mx:columns>    
+    </mx:DataGrid>	
+	<mx:HBox>
+		<mx:Label text="Montant total :" />	<mx:Text id="lemttTotal" text="" />
+	</mx:HBox>	
+	<mx:HBox>
+		<mx:Button label="Commander" height="35" />	 <mx:Button label="Vider le panier"  click="viderPanier()" icon="@Embed('../images/viderPanier.png')" />
+	</mx:HBox>	
+</mx:Panel>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" xmlns="*"  xmlns:comps="composants.*" >
+  
+  <mx:Metadata>
+        [Event(name="rechercheGlobale", type="evenements.rechercheEvent")]
+    </mx:Metadata>
+
+  
+  <mx:Script>
+  <![CDATA[
+  	import composants.panier; 
+  	import composants.recherche; 
+	import mx.rpc.events.ResultEvent;
+	import mx.rpc.events.FaultEvent;
+	import mx.utils.ObjectUtil;
+	import mx.controls.Alert;
+	import mx.core.Application;
+	import evenements.rechercheEvent;
+  
+    [Bindable]
+    public var date:Date = new Date();   
+    
+    // Efface le texte du champ recherche
+    public function effaceRecherche():void 
+    {
+        rechercheArt.text = "";
+    }
+
+    private function gestionLoginSucces(eventObj:Event):void {
+     Alert.show("Connexion réussie !");                         
+         //changer le child actif de la ViewStack
+        appVue.selectedChild = VueSecurisee ;
+    }               
+    
+    private function rechercherArticle():void {    	  
+    
+    	var critere:String = rechercheArt.text;
+
+    	 // Lancer un evenement et lui passer le critere en parametre
+    	   dispatchEvent(new rechercheEvent('rechercheGlobale', critere));
+    	 ecrprincipal.maViewStack.selectedIndex = 5; // conteneur6
+    }
+    
+ ]]>
+ </mx:Script>
+ 
+ <mx:Style source="css/styles.css" />
+ <mx:DateFormatter id="formatDate" formatString="DD/MM/YYYY" />  
+ 
+ <mx:ViewStack id="appVue" width="1000" height="642.1212" x="-4.45" y="9.1">
+
+  <mx:Panel horizontalAlign="center" verticalAlign="middle" backgroundColor="#0b333c" 
+  	id="vueLogin" width="1000" height="666.21216">
+  			 
+      <mx:HBox horizontalCenter="0" verticalAlign="middle" width="842.27277" height="586.0606">
+          
+      <mx:VBox textAlign="center" height="205">
+           <mx:Image source="images/flash.png" width="186" height="164"  />
+     	   <mx:Label text="Adobe Flash Player"  height="22" color="#F8FAFB" width="181" 
+           click="navigateToURL(new URLRequest('http://www.adobe.com/products/flashplayer/'), '_blank')"
+           useHandCursor="true" buttonMode="true"  mouseChildren="false"/>         
+      </mx:VBox>
+ 
+       <mx:Panel width="395.60608" height="565.98486"  title="Veuillez vous identifier :" horizontalAlign="center" 
+        verticalAlign="middle" titleIcon="@Embed(source='images/login2.jpg')" id="panelLogin">      
+        <comps:LoginForm id="loginLog" loginSucces="gestionLoginSucces(event);" width="362.27274" height="515.98486"	/>            
+      </mx:Panel>
+    
+      <mx:VBox textAlign="center" width="214" height="215">
+        <mx:Image source="images/Fx.png" width="196" height="174"  />
+         <mx:Label text="Adobe Flex"  height="21" color="#F8FAFB" width="160" 
+             click="navigateToURL(new URLRequest('http://www.adobe.com/products/flex/'), '_blank')"
+             useHandCursor="true" buttonMode="true"  mouseChildren="false"/>
+            </mx:VBox>
+      </mx:HBox>
+  </mx:Panel>
+
+  <mx:Panel  id="VueSecurisee" title="Vente en ligne avec Flex, GraniteDS et les EJB" titleStyleName="titreStyle" > 
+    <mx:ApplicationControlBar width="100%" horizontalAlign="right">
+	   <mx:Label text="Nous sommes le : {formatDate.format(date)}" textAlign="center"/> 	
+	   <mx:Image source="images/Utilisateur.gif" />
+	   <mx:Label text="Utilisateur : {loginLog.client.nom} {loginLog.client.prenom}" textAlign="right" />		
+	     <mx:Image source="images/flex.png" />    <mx:Image source="images/java.png" />
+	   <mx:Spacer width="100%"/>
+	   <mx:Image source="images/panier-shop.jpg" />
+	   <mx:Label id="labelMtt" text="Montant du panier : {ecrprincipal.lepanier.mttTotal} euros" 
+	   	textAlign="right" />	
+	   <mx:TextInput id="rechercheArt" text="Rechercher un article :" click="effaceRecherche()"  />
+	   <mx:Image source="images/rechercher.png" click="rechercherArticle()"/>
+	</mx:ApplicationControlBar>
+	<comps:ecranPrincipal id="ecrprincipal"/>
+  </mx:Panel>
+	  
+ </mx:ViewStack>
+</mx:Application>

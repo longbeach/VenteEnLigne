@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Panel  xmlns:mx="http://www.adobe.com/2006/mxml" width="400" height="400" title="Accueil"
+	titleStyleName="soustitreStyle"  xmlns:comps="composants.*">
+	
+	<mx:Script>
+	<![CDATA[
+	  import mx.core.Application;
+	  import mx.controls.Alert;	
+		
+	]]>
+</mx:Script>
+	
+	 <mx:Style source="css/styles.css" />
+	 
+	<mx:HBox horizontalAlign="center" width="100%">
+		<mx:Label text="Bienvenue"  />
+	</mx:HBox>
+	
+	<mx:VBox verticalAlign="middle" horizontalAlign="center" width="100%">
+	 <mx:HBox horizontalAlign="center" width="100%">
+	  <mx:Image source="images/INGDMYFS0341_petite.jpg" verticalAlign="middle" />
+	 </mx:HBox>
+	 <mx:HBox horizontalAlign="center" width="100%">
+	 </mx:HBox>
+	</mx:VBox>
+	
+	
+</mx:Panel>

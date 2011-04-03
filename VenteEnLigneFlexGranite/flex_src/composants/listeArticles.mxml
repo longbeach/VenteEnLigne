@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="400" height="450" creationComplete="srv.findBoutique()">
+
+	<mx:Script>
+	<![CDATA[
+	import mx.controls.Alert;
+	import mx.managers.PopUpManager;
+	import com.eni.dvtejb.metier.entities.Article;
+	import com.eni.dvtejb.metier.entities.Lignecommande;
+	import mx.rpc.AsyncToken;
+	import mx.rpc.AsyncResponder;
+	import mx.rpc.IResponder;
+	import mx.rpc.events.ResultEvent;
+	import mx.rpc.events.FaultEvent;
+	
+  	private function afficherDetails():void { 
+  		var articleIdChoisi:int;		  		
+  		articleIdChoisi = listeDesArticles.selectedItem.id;
+  		
+	  	var token:AsyncToken = srvPanier.findById(articleIdChoisi);	  	
+	  	var myResponder : AsyncResponder = new AsyncResponder(resultHandler, faultHandler);
+	  	token.addResponder(myResponder);	 
+	} 	
+	
+	private function resultHandler( event:ResultEvent, token:AsyncToken):void {
+		var article:Article = event.result as Article;
+		var popupDetails:detailsArticle = new detailsArticle();							
+		popupDetails.articleDetails = article;
+		PopUpManager.addPopUp(popupDetails, parent.parent, true);
+		PopUpManager.centerPopUp(popupDetails);
+	}
+ 
+    public function faultHandler(error:Object, token:AsyncToken):void {
+    	Alert.show("Erreur vaut : " + error.toString());    
+    }		
+			]]>
+	</mx:Script>
+
+	<mx:RemoteObject id="srv" showBusyCursor="true" destination="destFacadeBean" />
+	<mx:RemoteObject id="srvPanier" showBusyCursor="true" destination="destPanierBean" />
+
+    <!-- Affichage des articles dans une DataGrid -->
+    <mx:DataGrid id="listeDesArticles" dataProvider="{srv.findBoutique.lastResult}" width="100%" height="100%" 
+    	click="afficherDetails()" >
+	    <mx:columns>    	
+	    	<mx:DataGridColumn headerText="Article ID" dataField="id" />
+	    	<mx:DataGridColumn headerText="Nom article" dataField="nomArticle" />
+	    	<mx:DataGridColumn headerText="Catalogue" dataField="nomCatalogue" />
+	    	<mx:DataGridColumn headerText="Produit" dataField="nomProduit" />
+	    	<mx:DataGridColumn headerText="Prix TTC" dataField="prix" />
+	    	<mx:DataGridColumn headerText="Quantite en stock" dataField="quantite" />
+	    </mx:columns>    
+    </mx:DataGrid>
+</mx:Canvas>

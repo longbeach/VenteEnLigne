@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml"  label="Recherche" verticalGap="0">
+      <!-- creationComplete="init()" -->  
+    <mx:Script>
+    <![CDATA[                                     
+         import mx.collections.ArrayCollection;
+         import mx.rpc.events.ResultEvent;
+	     import mx.rpc.events.FaultEvent;
+	     import mx.utils.ObjectUtil;
+	     import mx.controls.Alert;
+	     import mx.rpc.AsyncToken;
+		 import mx.rpc.AsyncResponder;
+		 import mx.rpc.IResponder;
+	
+		 import com.eni.dvtejb.metier.entities.Article;
+        
+        [Bindable]
+	  	private var articlesResultat:ArrayCollection = new ArrayCollection();
+	  
+	  //[Bindable]
+	  	private var lesArtResultat:ArrayCollection = new ArrayCollection();	  	 
+	  	
+        public function rechercherArt(nomArt:String):void
+        {
+        	Alert.show("Appel de rechercherArt"); 
+        	Alert.show("nomArt vaut :" + nomArt); 
+        	var token:AsyncToken = srv.rechercheArticleParNom(nomArt);
+        		  		  		
+	  		var myResponder : AsyncResponder = new AsyncResponder(resultHandler, faultHandler);	  	
+	  		token.addResponder(myResponder);        	                	
+        }
+        
+         public function resultHandler( event:ResultEvent, token:AsyncToken):void {
+         	Alert.show("Appel de resultHandler"); 
+         	// Renvoie une collection d'articles         	        	 
+         	lesArtResultat = event.result as ArrayCollection;          	
+         	var index:int;			 			
+			Alert.show("lesArtResultat.length vaut : " + lesArtResultat.length);
+				
+		   articlesResultat.removeAll();
+					 			
+			for ( index = 0; index  < lesArtResultat.length; index ++){
+				var art:Article = new Article();
+				art.articleid =	lesArtResultat[index][0];				 
+				art.nom = lesArtResultat[index][1];
+				art.prix = lesArtResultat[index][2];		
+						
+				articlesResultat.addItem(art);
+			}	            	
+		}
+ 
+	    public function faultHandler(error:Object, token:AsyncToken):void {
+	    	Alert.show("Erreur vaut : " + error.toString());
+	    }
+        
+    ]]>
+    </mx:Script>
+        
+    <mx:RemoteObject id="srv" showBusyCursor="true" destination="destRechercheBean" />
+        
+    <mx:VBox height="2" width="100%" />   
+    
+    <mx:Label text="Recherche avancée" fontWeight="bold"/>
+    <mx:Label text="Saisissez un article ou les premières lettres d'un article" />    
+	    <!-- Recherche  -->
+	    <mx:Form  width="100%">
+	        <mx:FormItem label="Article : ">
+	            <mx:TextInput id="req" width="300" />
+	        </mx:FormItem>
+	        <mx:Button id="btnRech" label="Rechercher" click="rechercherArt(req.text)" 
+	        icon="@Embed('../images/loupe.png')"/>
+	    </mx:Form>
+	       
+    <mx:VBox  height="2" width="100%" />
+  
+    <!-- Resultats -->
+	<mx:HDividedBox height="100%" width="100%"  >
+	    <mx:VBox  height="100%">
+	        <mx:DataGrid id="datagridRes" dataProvider="{articlesResultat}" height="100%" width="100%" >
+	         <mx:columns>
+                <mx:DataGridColumn dataField="articleid" headerText="Article ID"  />
+                <mx:DataGridColumn dataField="nom" headerText="Nom" />
+                <mx:DataGridColumn dataField="prix" headerText="Prix unitaire" />           	
+	        </mx:columns>
+	        </mx:DataGrid>
+	    </mx:VBox>
+	</mx:HDividedBox>      
+</mx:VBox>

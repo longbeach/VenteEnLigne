@@ -1,0 +1,15 @@
+/* CSS file */
+
+.titreStyle {
+            color: #800000;
+            fontSize: 18;
+            fontWeight: bold;
+            textAlign: center;
+        }
+
+.soustitreStyle {
+            color: #005E8A;
+            fontSize: 18;
+            fontWeight: bold;
+            textAlign: center;
+        }
