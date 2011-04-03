@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faceted-project>
+  <runtime name="JBoss v5.0 2"/>
+  <fixed facet="jst.java"/>
+  <fixed facet="jst.connector"/>
+  <installed facet="jst.connector" version="1.5"/>
+  <installed facet="jst.java" version="5.0"/>
+</faceted-project>
