@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ListeDesArticles" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<style name="Sans_Normal" isDefault="true" fontName="DejaVu Sans" fontSize="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
+	<style name="Sans_Bold" isDefault="false" fontName="DejaVu Sans" fontSize="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
+	<parameter name="TitreRapport" class="java.lang.String"/>
+	<queryString language="ejbql">
+		<![CDATA[select c.nom, p.nom, a.nom, a.articleid, a.prix, s.quantite  from Catalogue c, Produit p, Article a, Stock s
+where c.catalogueid = p.catalogueFk
+and p.produitid = a.produitFk
+and a.stockFK = s.stockid]]>
+	</queryString>
+	<field name="COLUMN_1" class="java.lang.String"/>
+	<field name="COLUMN_2" class="java.lang.String"/>
+	<field name="COLUMN_3" class="java.lang.String"/>
+	<field name="COLUMN_4" class="java.lang.Long"/>
+	<field name="COLUMN_5" class="java.lang.Double"/>
+	<field name="COLUMN_6" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="21" splitType="Stretch">
+			<textField>
+				<reportElement style="Sans_Bold" mode="Opaque" x="0" y="0" width="555" height="15" forecolor="#FFFFFF" backcolor="#009999"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{TitreRapport}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="14" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="37" splitType="Stretch">
+			<staticText>
+				<reportElement style="Sans_Bold" mode="Opaque" x="47" y="0" width="94" height="35" forecolor="#FFFFFF" backcolor="#333333"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isItalic="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Catalogue]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Sans_Bold" mode="Opaque" x="141" y="0" width="121" height="35" forecolor="#FFFFFF" backcolor="#FF0033"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isItalic="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Produit]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Sans_Bold" mode="Opaque" x="514" y="0" width="41" height="35" forecolor="#FFFFFF" backcolor="#333333"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isItalic="true" isUnderline="true" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[Stock]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Sans_Bold" mode="Opaque" x="0" y="0" width="47" height="35" forecolor="#FFFFFF" backcolor="#FF0033"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isItalic="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Article ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Sans_Bold" mode="Opaque" x="262" y="0" width="192" height="35" forecolor="#FFFFFF" backcolor="#333333"/>
+				<box leftPadding="10" rightPadding="10"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isItalic="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[ARTICLE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Sans_Bold" mode="Opaque" x="454" y="0" width="60" height="35" forecolor="#FFFFFF" backcolor="#FF0033"/>
+				<box leftPadding="10" rightPadding="10"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isItalic="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[PRIX]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="23" splitType="Stretch">
+			<textField>
+				<reportElement style="Sans_Bold" mode="Opaque" x="47" y="0" width="94" height="20" forecolor="#FFFFFF" backcolor="#333333"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{COLUMN_1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Sans_Bold" mode="Opaque" x="141" y="0" width="121" height="20" forecolor="#FFFFFF" backcolor="#FF0033"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{COLUMN_2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Sans_Bold" mode="Opaque" x="262" y="0" width="192" height="20" forecolor="#FFFFFF" backcolor="#333333"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{COLUMN_3}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Sans_Bold" mode="Opaque" x="0" y="0" width="47" height="20" forecolor="#FFFFFF" backcolor="#FF0033"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression class="java.lang.Long"><![CDATA[$F{COLUMN_4}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Sans_Bold" mode="Opaque" x="454" y="0" width="60" height="20" forecolor="#FFFFFF" backcolor="#FF0033"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{COLUMN_5}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Sans_Bold" mode="Opaque" x="514" y="0" width="41" height="20" forecolor="#FFFFFF" backcolor="#333333"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{COLUMN_6}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="33" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="41" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="35" splitType="Stretch"/>
+	</summary>
+</jasperReport>

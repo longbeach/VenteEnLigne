@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE jboss PUBLIC
+	"-//JBoss//DTD JBOSS 5.0//EN"
+	"http://www.jboss.org/j2ee/dtd/jboss_5_0.dtd">
+
+<jboss>
+<!--<security-domain>java:/jaas/venteEnLigne_domaine</security-domain>	 -->
+	<security-domain>java:/jaas/venteEnLigne_domaine_DB</security-domain>
+<!--<security-domain>java:/jaas/venteEnLigne_domaine_LDAP</security-domain>-->
+</jboss>

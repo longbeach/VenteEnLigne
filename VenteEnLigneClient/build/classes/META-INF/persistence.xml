@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="1.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd">
+	
+	<!--  Unité de persistance JTA -->
+	<!--  Fonctionne avec  TestTransactionBMT -->
+	<persistence-unit name="VenteEnLigneClientJavaEE" transaction-type="JTA">
+		 <provider>org.hibernate.ejb.HibernatePersistence</provider>
+	
+	     <jta-data-source>java:/OracleDS</jta-data-source>	
+	
+		 <class>com.eni.dvtejb.metier.entities.Utilisateur</class>
+		 <class>com.eni.dvtejb.metier.entities.Adresse</class>
+		 <class>com.eni.dvtejb.metier.entities.Commande</class>
+		 <class>com.eni.dvtejb.metier.entities.Lignecommande</class>
+		 <class>com.eni.dvtejb.metier.entities.Stock</class>
+		 <class>com.eni.dvtejb.metier.entities.Article</class>
+		 <class>com.eni.dvtejb.metier.entities.Produit</class>
+		 <class>com.eni.dvtejb.metier.entities.Catalogue</class>
+		 <class>com.eni.dvtejb.metier.entities.Client</class>
+		 <class>com.eni.dvtejb.metier.entities.Administrateur</class>
+		 <class>com.eni.dvtejb.metier.entities.Gestionnaire</class>
+		 	 	 
+	    <properties>    
+	      <property name="hibernate.transaction.manager_lookup_class" value="org.hibernate.transaction.JBossTransactionManagerLookup"/>
+	      <property name="hibernate.dialect" value="org.hibernate.dialect.Oracle9Dialect" />  
+	      <property name="hibernate.hbm2ddl.auto" value="update" />    
+	      <property name="hibernate.show_sql" value="true" /> 
+	     </properties> 
+           
+	</persistence-unit>
+	
+	<!--  Unité de persistance NON JTA -->	
+	<!-- Fonctionne pour PersistenceHorsContainer, ClientDAOTest et TestServlet -->
+	<persistence-unit name="VenteEnLigneClientJavaSE" transaction-type="RESOURCE_LOCAL">
+
+	 <provider>org.hibernate.ejb.HibernatePersistence</provider>
+
+	 
+	 <!--  Pour  le test PersistenceHorsContainer, il faut supprimer cette ligne (non-jta-data-source) -->
+	<non-jta-data-source>java:/OracleDS</non-jta-data-source>	
+	  
+	 <class>com.eni.dvtejb.metier.entities.Utilisateur</class>
+	 <class>com.eni.dvtejb.metier.entities.Adresse</class>
+	 <class>com.eni.dvtejb.metier.entities.Commande</class>
+	 <class>com.eni.dvtejb.metier.entities.Lignecommande</class>
+	 <class>com.eni.dvtejb.metier.entities.Stock</class>
+	 <class>com.eni.dvtejb.metier.entities.Article</class>
+	 <class>com.eni.dvtejb.metier.entities.Produit</class>
+	 <class>com.eni.dvtejb.metier.entities.Catalogue</class>
+	 <class>com.eni.dvtejb.metier.entities.Client</class>
+	 <class>com.eni.dvtejb.metier.entities.Administrateur</class>
+	 <class>com.eni.dvtejb.metier.entities.Gestionnaire</class>
+	 	 
+    <properties>  
+      <property name="hibernate.connection.driver_class" value="oracle.jdbc.driver.OracleDriver" />  
+      <property name="hibernate.connection.username" value="hr" />  
+      <property name="hibernate.connection.password" value="toto" />  
+      <property name="hibernate.connection.url" value="jdbc:oracle:thin:@localhost:1521/XE" /> 
+      <property name="hibernate.dialect" value="org.hibernate.dialect.Oracle9Dialect" />  
+      <property name="hibernate.hbm2ddl.auto" value="update" /> 
+      <property name="hibernate.show_sql" value="true" /> 
+     </properties> 
+	</persistence-unit>
+	
+</persistence>

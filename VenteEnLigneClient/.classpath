@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="appClientModule"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/VenteEnLigneEJB"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="lib" path="K:/ENI/DeveloppementEJB3/cglib-2.2.jar"/>
+	<classpathentry kind="lib" path="K:/ENI/DeveloppementEJB3/asm-3.1.jar"/>
+	<classpathentry kind="lib" path="K:/ENI/DeveloppementEJB3/jasperReports/jasperreports-3.6.1/lib/jcommon-1.0.15.jar"/>
+	<classpathentry kind="lib" path="K:/ENI/DeveloppementEJB3/jasperReports/jasperreports-3.6.1/lib/jfreechart-1.0.12.jar"/>
+	<classpathentry kind="lib" path="K:/ENI/DeveloppementEJB3/jasperReports/jasperreports-3.6.1/lib/groovy-all-1.5.5.jar"/>
+	<classpathentry kind="lib" path="K:/ENI/DeveloppementEJB3/jasperReports/jasperreports-3.6.1/lib/iText-2.1.0.jar"/>
+	<classpathentry kind="lib" path="K:/ENI/DeveloppementEJB3/jasperReports/jasperreports-3.6.1.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.generic.runtimeTarget/JBoss v5.0 2">
+		<attributes>
+			<attribute name="owner.project.facets" value="jst.appclient"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jre1.6.0_07">
+		<attributes>
+			<attribute name="owner.project.facets" value="jst.java"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="output" path="build/classes"/>
+</classpath>
