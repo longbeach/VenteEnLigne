@@ -1,0 +1,96 @@
+<html>
+<script language="javascript"  type="text/javascript">
+
+    //////////////////////////////////////////////////////////////////////////////
+		function getNewHTTPObject()
+		{
+		        var xmlhttp;		       		
+		        /** Tous les browsers */
+		        if (!xmlhttp && typeof XMLHttpRequest != 'undefined')
+		        {
+		            try
+		            {
+		                xmlhttp = new XMLHttpRequest();
+		            }
+		            catch (e)
+		            {
+		                xmlhttp = false;
+		            }
+		        }	
+		        return xmlhttp;
+		}
+
+		var xmlHttp = getNewHTTPObject();
+   	//////////////////////////////////////////////////////////////////////////////
+		function chargeURLPut(url) { 
+		  var mimeType = "text/plain";  
+		  xmlHttp.open('PUT', url, true);  // true : asynchrone false: synchrone		
+		  xmlHttp.setRequestHeader('Content-Type', mimeType);  
+		  xmlHttp.send(null);
+	  }
+ 	</script>
+
+<body>
+	
+<form id="form1" action="http://localhost:8085/VenteEnLigneWeb/REST/test/toto" method="POST">
+  <input type="submit" value="Lanceur POST1">
+  http://localhost:8085/VenteEnLigneWeb/REST/test/toto
+</form>
+
+<form id="form2" action="http://localhost:8085/VenteEnLigneWeb/REST/AfficherListeUtilisateurs/annuaire" method="GET">
+  <input type="submit" value="Lanceur GET1">
+  http://localhost:8085/VenteEnLigneWeb/REST/AfficherListeUtilisateurs/annuaire
+</form> 
+
+<form id="form21" action="http://localhost:8085/VenteEnLigneWeb/REST/AfficherListeUtilisateurs/annuaire" method="GET">
+  <input type="hidden" name="nomUtilisateur"   value="Fernandes" />
+  <input type="submit" value="Lanceur GET1a">
+  http://localhost:8085/VenteEnLigneWeb/REST/AfficherListeUtilisateurs/annuaire
+</form> 
+
+<form id="form3" action="http://localhost:8085/VenteEnLigneWeb/REST/AfficherListeUtilisateurs/MAJ" method="POST">
+  <input type="submit" value="Lanceur POST2">
+  http://localhost:8085/VenteEnLigneWeb/REST/AfficherListeUtilisateurs/MAJ sans paramètres 
+</form> 
+
+<form id="form4" action="http://localhost:8085/VenteEnLigneWeb/REST/AfficherListeUtilisateurs/MAJ" method="POST">
+  <input type="hidden" name="adId"   value="0" />
+  <input type="hidden" name="numRue"  value="222" />
+  <input type="submit" value="Lanceur POST3">
+  http://localhost:8085/VenteEnLigneWeb/REST/AfficherListeUtilisateurs/MAJ avec paramètres Tester avec FormParams
+</form> 
+
+<form id="form5" action="http://localhost:8085/VenteEnLigneWeb/REST/AfficherListeUtilisateurs/MAJ?adId=0&numRue=33" method="POST">
+  <input type="submit" value="Lanceur POST4">
+  http://localhost:8085/VenteEnLigneWeb/REST/AfficherListeUtilisateurs/MAJ?adId=0&numRue=33 MARCHE
+</form> 
+
+<form id="form6" action="http://localhost:8085/VenteEnLigneWeb/REST/AfficherListeUtilisateurs/MAJ" method="PUT">
+  <input type="submit" value="Lanceur PUT1">
+  http://localhost:8085/VenteEnLigneWeb/REST/AfficherListeUtilisateurs/MAJ
+</form> 
+
+<form id="form7" action="http://localhost:8085/VenteEnLigneWeb/REST/AfficherListeUtilisateurs/MAJ/" method="POST">
+  <input type="submit" value="Lanceur POST5">
+  http://localhost:8085/VenteEnLigneWeb/REST/AfficherListeUtilisateurs/MAJ
+</form> 
+
+<form id="form71" action="http://localhost:8085/VenteEnLigneWeb/REST/AfficherListeUtilisateurs/Ballon" method="POST">
+  <input type="submit" value="Lanceur POST6">
+  http://localhost:8085/VenteEnLigneWeb/REST/AfficherListeUtilisateurs/Ballon MARCHE
+</form> 
+
+
+<form id="form8" action="http://localhost:8085/VenteEnLigneWeb/REST/AfficherListeUtilisateurs/MAJPWD/4/toto" method="POST">
+  <input type="submit" value="Lanceur POST7">
+  http://localhost:8085/VenteEnLigneWeb/REST/AfficherListeUtilisateurs/MAJPWD/4/toto
+</form> 
+
+Essai avec AJAX : 
+<form method="POST" name="ajax" action="">                  
+         <input type="button" value="Lanceur PUT"  
+         onClick="chargeURLPut('http://localhost:8085/VenteEnLigneWeb/REST/AfficherListeUtilisateurs/MAJPWD/4/tutu')">
+</form>
+
+</body>
+</html>

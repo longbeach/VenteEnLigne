@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RapportGraphique" language="groovy" pageWidth="800" pageHeight="1000" columnWidth="760" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["K:\\ENI\\DeveloppementEJB3\\workspaceGalileo\\VenteEnLigneWeb\\WebContent\\rapports\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString language="ejbql">
+		<![CDATA[select a.prix, a.nom, c.nom
+from Article a, Produit p, Catalogue c
+where a.produitFk = p.produitid
+and p.catalogueFk = c.catalogueid
+order by  c.nom]]>
+	</queryString>
+	<field name="COLUMN_1" class="java.math.BigDecimal"/>
+	<field name="COLUMN_2" class="java.lang.String"/>
+	<field name="COLUMN_3" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="42" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="6" width="760" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Diagramme (Bar chart) horizontal : prix des articles par catalogue
+]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="597" splitType="Stretch">
+			<barChart>
+				<chart>
+					<reportElement x="0" y="0" width="760" height="198"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend position="Bottom"/>
+				</chart>
+				<categoryDataset>
+					<categorySeries>
+						<seriesExpression><![CDATA[$F{COLUMN_3}]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{COLUMN_2}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{COLUMN_1}]]></valueExpression>
+					</categorySeries>
+				</categoryDataset>
+				<barPlot>
+					<plot orientation="Horizontal"/>
+					<itemLabel color="#000000" backgroundColor="#FFFFFF"/>
+					<categoryAxisFormat>
+						<axisFormat>
+							<labelFont/>
+							<tickLabelFont/>
+						</axisFormat>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat>
+							<labelFont/>
+							<tickLabelFont/>
+						</axisFormat>
+					</valueAxisFormat>
+				</barPlot>
+			</barChart>
+			<pieChart>
+				<chart>
+					<reportElement x="0" y="217" width="760" height="202"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<pieDataset>
+					<keyExpression><![CDATA[$F{COLUMN_3}]]></keyExpression>
+					<valueExpression><![CDATA[$F{COLUMN_1}]]></valueExpression>
+					<labelExpression><![CDATA[$F{COLUMN_3}]]></labelExpression>
+				</pieDataset>
+				<piePlot>
+					<plot/>
+					<itemLabel color="#000000" backgroundColor="#FFFFFF"/>
+				</piePlot>
+			</pieChart>
+			<staticText>
+				<reportElement x="0" y="197" width="760" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Camembert (Pie chart) : répartition des catalogues selon la quantité d'articles]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>
