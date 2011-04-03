@@ -10,7 +10,7 @@ I use the EJB container bundled with JBoss 6 application server to :
 - create a security policy with roles and permissions that are defined in properties file, a database or a LDAP
 - expose EJB 3 as web services
 - create asynchronous tasks with the help of EJB Timers
-- provide a little of aspect-oriented programming with interceptors
+- provide a little of aspect-oriented programming with interceptors 
 
 I also use :
 - the GraniteDS framework to establish the communication between Java objects and Flex 3, to create rich interfaces (RIA).
