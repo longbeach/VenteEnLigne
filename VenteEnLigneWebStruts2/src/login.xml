@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE struts PUBLIC  
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"  
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>  
+   
+ <constant name="struts.custom.i18n.resources" value="global-messages" />
+ 
+ <package name="login"  extends="struts-default">  
+   
+  <!--  DEBUT TILES  -->
+  <result-types>
+     	<!-- Defini le type de résultat qui renvoie vers une definition Tiles -->
+       	<result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult" />
+  </result-types>
+  <!--  FIN TILES  -->	 
+   
+  <interceptors>
+    <interceptor name="autorisation" class="com.eni.dvtejb.clientStruts2.interceptor.AutorisationInterceptor" />
+
+    <interceptor-stack name="unepile">
+      <interceptor-ref name="exception" />
+      <interceptor-ref name="i18n" />
+      <interceptor-ref name="chain" />
+      <interceptor-ref name="params" />
+      <interceptor-ref name="autorisation" />   
+     </interceptor-stack>
+     
+  </interceptors>
+	
+	<action name="changerLangue" class="com.eni.dvtejb.clientStruts2.action.LoginAction" method="changerLangue">
+		<result name="input">/index.jsp</result>
+	</action>
+	
+	<action name="activerLogin" >
+		<result>/login/login.jsp</result>	
+	</action>
+	
+	<action name="doLogin" class="com.eni.dvtejb.clientStruts2.action.LoginAction">
+		<result name="input">/login/login.jsp</result>
+		<result name="error">/login/login.jsp</result>
+		<result type="tiles" name="administration">VenteEnLigne.administration</result>
+		<result type="tiles">VenteEnLigne.accueil</result>
+	</action>
+ 
+ </package>  
+</struts>

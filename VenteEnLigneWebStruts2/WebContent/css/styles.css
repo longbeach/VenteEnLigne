@@ -1,0 +1,51 @@
+body {
+  background:#ffffff;
+  font-family: verdana;
+  font-size: 8pt;
+  font-weight: bold;
+  color: #055265;
+}
+
+a:link {
+  font-family: verdana;
+  font-size: 8pt;
+  color: #055265;
+  text-decoration:underline
+}
+
+A:visited {
+  font-family: verdana;
+  font-size: 8pt;
+  color: #055265;
+  text-decoration:underline
+}
+
+A:hover {
+  font-family: verdana;
+  font-size: 8pt;
+  color: #B12907;
+  text-decoration:none
+}
+
+.ErrorMessage {
+  font-family: verdana;
+  font-size: 10pt;
+  color: #FF0000;
+} 
+
+.table1 {
+	background-color:#FFFFFF;
+	border:solid 2px #009900;
+	margin-top:15px;
+}
+
+h2 {
+	color: #087d9a;
+}
+
+h1 {
+	color: #087d9a;
+}
+
+
+

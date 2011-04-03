@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE struts PUBLIC  
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"  
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>  
+   
+ <constant name="struts.custom.i18n.resources" value="global-messages" />
+ 
+ <package name="inscription"  extends="login">  
+    
+    <action name="inscription">
+		 <result>/inscription/nouvLogin.jsp</result>
+	</action>
+    
+    <action name="nouvLogin" class="com.eni.dvtejb.clientStruts2.action.UtilisateurAction" method="validateLogin">
+         <result name="input">/inscription/nouvLogin.jsp</result>
+         <result name="error">/inscription/nouvLogin.jsp</result>
+         <result name="success">/inscription/nouvUtilisateur.jsp</result>
+    </action>
+
+	<action name="confirmDetails" class="com.eni.dvtejb.clientStruts2.action.UtilisateurAction" method="validateUtilisateur"> 
+         <result name="input">/inscription/nouvUtilisateur.jsp</result>
+         <result name="success">/inscription/nouvAdresse.jsp</result>
+	</action>
+
+	<action name="confirmAdresse" class="com.eni.dvtejb.clientStruts2.action.UtilisateurAction"  method="creerNouvelUtilisateur"> 
+	  <result name="input">/inscription/nouvAdresse.jsp</result>
+         <result name="success">/inscription/succes.jsp</result>
+	</action> 
+    
+    </package>   
+</struts>

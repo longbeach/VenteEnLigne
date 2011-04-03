@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE struts PUBLIC  
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"  
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>  
+   
+ <constant name="struts.custom.i18n.resources" value="global-messages" />
+ 
+ <package name="accueil"  extends="login">  
+	  
+    <action name="accueil" >
+         <interceptor-ref name="autorisation"></interceptor-ref>
+        <result type="tiles" name="error" >VenteEnLigne.login</result>
+		<result type="tiles">VenteEnLigne.accueil</result>
+	</action>
+    
+    <action name="editionProfil" class="com.eni.dvtejb.clientStruts2.action.AccueilAction" method="editerProfil">
+       <result type="tiles" name="success">VenteEnLigne.editProfil</result>
+    </action>
+  
+    <action name="sauveProfil" class="com.eni.dvtejb.clientStruts2.action.AccueilAction" method="sauverProfil">
+       <result type="tiles" name="input">VenteEnLigne.editProfil</result>
+       <result type="tiles" name="success">VenteEnLigne.sauveProfil</result>
+    </action>
+
+ </package>  
+
+</struts>

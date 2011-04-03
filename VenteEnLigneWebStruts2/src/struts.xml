@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE struts PUBLIC  
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"  
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>  
+
+    <include file="login.xml" />
+    <include file="accueil.xml" />
+    <include file="magasin.xml" />
+    <include file="inscription.xml" />
+    <include file="administration.xml" />
+    
+    <constant name="struts.convention.action.packages" value="com.eni.dvtejb.clientStruts2.action" />   
+    
+</struts>

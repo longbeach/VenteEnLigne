@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+       
+<tiles-definitions>
+
+  <definition name="TemplateStandard" template="/tiles/classic.jsp" >
+    <put-attribute name="header" value="/tiles/header.jsp" />
+    <put-attribute name="menu" value="/tiles/menu.jsp" />
+    <put-attribute name="body" value="/tiles/body.jsp" />
+    <put-attribute name="footer" value="/tiles/footer.jsp" />
+  </definition>
+  
+  <definition name="VenteEnLigne.login" extends="TemplateStandard">
+    <put-attribute name="title" value="Connexion" />
+    <put-attribute name="body" value="/login/login.jsp" />
+  </definition>
+  
+  <definition name="VenteEnLigne.accueil"  extends="TemplateStandard">
+    <put-attribute name="title" value="Accueil" />
+    <put-attribute name="body" value="/menu/accueil.jsp" />
+  </definition>
+  
+   <definition name="VenteEnLigne.editProfil"  extends="TemplateStandard">
+    <put-attribute name="title" value="Mon profil" />
+    <put-attribute name="body" value="/menu/profil.jsp" />
+  </definition>
+  
+  <definition name="VenteEnLigne.sauveProfil"  extends="TemplateStandard">
+    <put-attribute name="title" value="Profil sauvegardé" />
+    <put-attribute name="body" value="/menu/profilSauve.jsp" />
+  </definition>
+  
+  <definition name="VenteEnLigne.afficheMagasin"  extends="TemplateStandard">
+    <put-attribute name="title" value="Liste des articles" />
+    <put-attribute name="body" value="/magasin/magasin.jsp" />
+  </definition>
+  
+  <definition name="VenteEnLigne.visualiserArticle"  extends="TemplateStandard">
+    <put-attribute name="title" value="Détails de l'article" />
+    <put-attribute name="body" value="/magasin/visualiser.jsp" />
+  </definition>
+  
+  <definition name="VenteEnLigne.visualiserPanier"  extends="TemplateStandard">
+    <put-attribute name="title" value="Panier" />
+    <put-attribute name="body" value="/magasin/panier.jsp" />
+  </definition>
+  
+  <definition name="VenteEnLigne.histoCommandes"  extends="TemplateStandard">
+    <put-attribute name="title" value="Historique de mes commandes" />
+    <put-attribute name="body" value="/magasin/commandes.jsp" />
+  </definition>
+  
+   <definition name="VenteEnLigne.commanderConfirm"  extends="TemplateStandard">
+    <put-attribute name="title" value="Commander" />
+    <put-attribute name="body" value="/magasin/commanderConfirm.jsp" />
+  </definition>
+  
+  <definition name="VenteEnLigne.payer"  extends="TemplateStandard">
+    <put-attribute name="title" value="Payer" />
+    <put-attribute name="body" value="/magasin/payer.jsp" />
+  </definition>
+  
+  <definition name="VenteEnLigne.rechercher" extends="TemplateStandard">
+  	  <put-attribute name="title" value="Rechercher" />
+	  <put-attribute name="body" value="/magasin/recherche.jsp"  />
+  </definition>
+  
+  <definition name="VenteEnLigne.resultatsRecherche" extends="TemplateStandard">
+  	  <put-attribute name="title" value="Resultats" />
+	  <put-attribute name="body" value="/magasin/resultats.jsp"  />
+  </definition>
+  
+   <!--  DEBUT ADMINISTRATION -->
+   
+  <definition name="TemplateAdministration" template="/tiles/classic.jsp" >
+    <put-attribute name="header" value="/tiles/header.jsp" />
+    <put-attribute name="menu" value="/tiles/menuAdmin.jsp" />
+    <put-attribute name="body" value="/tiles/body.jsp" />
+    <put-attribute name="footer" value="/tiles/footer.jsp" />
+  </definition>
+   
+  <definition name="VenteEnLigne.AccesInterdit"  extends="TemplateAdministration">
+    <put-attribute name="title" value="Accès interdit" />
+    <put-attribute name="body" value="/commun/AccesInterdit.jsp" />
+  </definition>
+  
+  <definition name="VenteEnLigne.administration"  extends="TemplateAdministration">
+    <put-attribute name="title" value="Administration" />
+    <put-attribute name="body" value="/administration/administration.jsp" />
+  </definition>
+  
+  <definition name="VenteEnLigne.administrationUtilisateurs"  extends="TemplateAdministration">
+    <put-attribute name="title" value="Administration des utilisateurs" />
+    <put-attribute name="body" value="/administration/adminUtilisateurs.jsp" />
+  </definition>
+  
+  <definition name="VenteEnLigne.administrationArticles"  extends="TemplateAdministration">
+    <put-attribute name="title" value="Administration des articles" />
+    <put-attribute name="body" value="/administration/adminArticles.jsp" />
+  </definition>
+  
+     <!--  FIN ADMINISTRATION -->
+     
+</tiles-definitions>

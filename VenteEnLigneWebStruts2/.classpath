@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="lib" path="K:/ENI/DeveloppementEJB3/struts-2.1.8/lib/antlr-2.7.2.jar"/>
+	<classpathentry kind="lib" path="K:/ENI/DeveloppementEJB3/struts-2.1.8/lib/aopalliance-1.0.jar"/>
+	<classpathentry kind="lib" path="K:/ENI/DeveloppementEJB3/struts-2.1.8/lib/classworlds-1.1.jar"/>
+	<classpathentry kind="lib" path="K:/ENI/DeveloppementEJB3/struts-2.1.8/lib/commons-beanutils-1.7.0.jar"/>
+	<classpathentry kind="lib" path="K:/ENI/DeveloppementEJB3/struts-2.1.8/lib/commons-chain-1.2.jar"/>
+	<classpathentry kind="lib" path="K:/ENI/DeveloppementEJB3/struts-2.1.8/lib/commons-collections-3.2.jar"/>
+	<classpathentry kind="lib" path="K:/ENI/DeveloppementEJB3/struts-2.1.8/lib/commons-digester-2.0.jar"/>
+	<classpathentry kind="lib" path="K:/ENI/DeveloppementEJB3/struts-2.1.8/lib/commons-fileupload-1.2.1.jar"/>
+	<classpathentry kind="lib" path="K:/ENI/DeveloppementEJB3/struts-2.1.8/lib/commons-io-1.3.2.jar"/>
+	<classpathentry kind="lib" path="K:/ENI/DeveloppementEJB3/struts-2.1.8/lib/commons-lang-2.3.jar"/>
+	<classpathentry kind="lib" path="K:/ENI/DeveloppementEJB3/struts-2.1.8/lib/commons-logging-1.0.4.jar"/>
+	<classpathentry kind="lib" path="K:/ENI/DeveloppementEJB3/struts-2.1.8/lib/commons-logging-api-1.1.jar"/>
+	<classpathentry kind="lib" path="K:/ENI/DeveloppementEJB3/struts-2.1.8/lib/commons-validator-1.3.1.jar"/>
+	<classpathentry kind="lib" path="K:/ENI/DeveloppementEJB3/struts-2.1.8/lib/dwr-1.1.1.jar"/>
+	<classpathentry kind="lib" path="K:/ENI/DeveloppementEJB3/struts-2.1.8/lib/ezmorph-1.0.3.jar"/>
+	<classpathentry kind="lib" path="K:/ENI/DeveloppementEJB3/struts-2.1.8/lib/freemarker-2.3.15.jar"/>
+	<classpathentry kind="lib" path="K:/ENI/DeveloppementEJB3/struts-2.1.8/lib/json-lib-2.1.jar"/>
+	<classpathentry kind="lib" path="K:/ENI/DeveloppementEJB3/struts-2.1.8/lib/ognl-2.7.3.jar"/>
+	<classpathentry kind="lib" path="K:/ENI/DeveloppementEJB3/struts-2.1.8/lib/org.apache.felix.bundlerepository-1.2.1.jar"/>
+	<classpathentry kind="lib" path="K:/ENI/DeveloppementEJB3/struts-2.1.8/lib/org.apache.felix.framework-1.4.1.jar"/>
+	<classpathentry kind="lib" path="K:/ENI/DeveloppementEJB3/struts-2.1.8/lib/org.apache.felix.main-1.4.1.jar"/>
+	<classpathentry kind="lib" path="K:/ENI/DeveloppementEJB3/struts-2.1.8/lib/org.apache.felix.shell.tui-1.0.2.jar"/>
+	<classpathentry kind="lib" path="K:/ENI/DeveloppementEJB3/struts-2.1.8/lib/org.apache.felix.shell-1.0.2.jar"/>
+	<classpathentry kind="lib" path="K:/ENI/DeveloppementEJB3/struts-2.1.8/lib/oro-2.0.8.jar"/>
+	<classpathentry kind="lib" path="K:/ENI/DeveloppementEJB3/struts-2.1.8/lib/oval-1.31.jar"/>
+	<classpathentry kind="lib" path="K:/ENI/DeveloppementEJB3/struts-2.1.8/lib/plexus-container-default-1.0-alpha-10.jar"/>
+	<classpathentry kind="lib" path="K:/ENI/DeveloppementEJB3/struts-2.1.8/lib/plexus-utils-1.2.jar"/>
+	<classpathentry kind="lib" path="K:/ENI/DeveloppementEJB3/struts-2.1.8/lib/sitemesh-2.4.2.jar"/>
+	<classpathentry kind="lib" path="K:/ENI/DeveloppementEJB3/struts-2.1.8/lib/spring-beans-2.5.6.jar"/>
+	<classpathentry kind="lib" path="K:/ENI/DeveloppementEJB3/struts-2.1.8/lib/spring-context-2.5.6.jar"/>
+	<classpathentry kind="lib" path="K:/ENI/DeveloppementEJB3/struts-2.1.8/lib/spring-core-2.5.6.jar"/>
+	<classpathentry kind="lib" path="K:/ENI/DeveloppementEJB3/struts-2.1.8/lib/spring-test-2.5.6.jar"/>
+	<classpathentry kind="lib" path="K:/ENI/DeveloppementEJB3/struts-2.1.8/lib/spring-web-2.5.6.jar"/>
+	<classpathentry kind="lib" path="K:/ENI/DeveloppementEJB3/struts-2.1.8/lib/sslext-1.2-0.jar"/>
+	<classpathentry kind="lib" path="K:/ENI/DeveloppementEJB3/struts-2.1.8/lib/struts2-codebehind-plugin-2.1.8.jar"/>
+	<classpathentry kind="lib" path="K:/ENI/DeveloppementEJB3/struts-2.1.8/lib/struts2-config-browser-plugin-2.1.8.jar"/>
+	<classpathentry kind="lib" path="K:/ENI/DeveloppementEJB3/struts-2.1.8/lib/struts2-core-2.1.8.jar"/>
+	<classpathentry kind="lib" path="K:/ENI/DeveloppementEJB3/struts-2.1.8/lib/struts2-dojo-plugin-2.1.8.jar"/>
+	<classpathentry kind="lib" path="K:/ENI/DeveloppementEJB3/struts-2.1.8/lib/struts2-dwr-plugin-2.1.8.jar"/>
+	<classpathentry kind="lib" path="K:/ENI/DeveloppementEJB3/struts-2.1.8/lib/struts2-embeddedjsp-plugin-2.1.8.jar"/>
+	<classpathentry kind="lib" path="K:/ENI/DeveloppementEJB3/struts-2.1.8/lib/struts2-jasperreports-plugin-2.1.8.jar"/>
+	<classpathentry kind="lib" path="K:/ENI/DeveloppementEJB3/struts-2.1.8/lib/struts2-javatemplates-plugin-2.1.8.jar"/>
+	<classpathentry kind="lib" path="K:/ENI/DeveloppementEJB3/struts-2.1.8/lib/struts2-jfreechart-plugin-2.1.8.jar"/>
+	<classpathentry kind="lib" path="K:/ENI/DeveloppementEJB3/struts-2.1.8/lib/struts2-jsf-plugin-2.1.8.jar"/>
+	<classpathentry kind="lib" path="K:/ENI/DeveloppementEJB3/struts-2.1.8/lib/struts2-json-plugin-2.1.8.jar"/>
+	<classpathentry kind="lib" path="K:/ENI/DeveloppementEJB3/struts-2.1.8/lib/struts2-junit-plugin-2.1.8.jar"/>
+	<classpathentry kind="lib" path="K:/ENI/DeveloppementEJB3/struts-2.1.8/lib/struts2-osgi-admin-bundle-2.1.8.jar"/>
+	<classpathentry kind="lib" path="K:/ENI/DeveloppementEJB3/struts-2.1.8/lib/struts2-oval-plugin-2.1.8.jar"/>
+	<classpathentry kind="lib" path="K:/ENI/DeveloppementEJB3/struts-2.1.8/lib/struts2-pell-multipart-plugin-2.1.8.jar"/>
+	<classpathentry kind="lib" path="K:/ENI/DeveloppementEJB3/struts-2.1.8/lib/struts2-rest-plugin-2.1.8.jar"/>
+	<classpathentry kind="lib" path="K:/ENI/DeveloppementEJB3/struts-2.1.8/lib/struts2-sitegraph-plugin-2.1.8.jar"/>
+	<classpathentry kind="lib" path="K:/ENI/DeveloppementEJB3/struts-2.1.8/lib/struts2-sitemesh-plugin-2.1.8.jar"/>
+	<classpathentry kind="lib" path="K:/ENI/DeveloppementEJB3/struts-2.1.8/lib/struts2-testng-plugin-2.1.8.jar"/>
+	<classpathentry kind="lib" path="K:/ENI/DeveloppementEJB3/struts-2.1.8/lib/struts2-tiles-plugin-2.1.8.jar"/>
+	<classpathentry kind="lib" path="K:/ENI/DeveloppementEJB3/struts-2.1.8/lib/struts-core-1.3.10.jar"/>
+	<classpathentry kind="lib" path="K:/ENI/DeveloppementEJB3/struts-2.1.8/lib/testng-5.1.jar"/>
+	<classpathentry kind="lib" path="K:/ENI/DeveloppementEJB3/struts-2.1.8/lib/tiles-api-2.0.6.jar"/>
+	<classpathentry kind="lib" path="K:/ENI/DeveloppementEJB3/struts-2.1.8/lib/tiles-core-2.0.6.jar"/>
+	<classpathentry kind="lib" path="K:/ENI/DeveloppementEJB3/struts-2.1.8/lib/tiles-jsp-2.0.6.jar"/>
+	<classpathentry kind="lib" path="K:/ENI/DeveloppementEJB3/struts-2.1.8/lib/velocity-1.5.jar"/>
+	<classpathentry kind="lib" path="K:/ENI/DeveloppementEJB3/struts-2.1.8/lib/velocity-tools-1.3.jar"/>
+	<classpathentry kind="lib" path="K:/ENI/DeveloppementEJB3/struts-2.1.8/lib/xpp3_min-1.1.3.4.O.jar"/>
+	<classpathentry kind="lib" path="K:/ENI/DeveloppementEJB3/struts-2.1.8/lib/xstream-1.2.2.jar"/>
+	<classpathentry kind="lib" path="K:/ENI/DeveloppementEJB3/struts-2.1.8/lib/xwork-core-2.1.6.jar"/>
+	<classpathentry kind="lib" path="K:/ENI/DeveloppementEJB3/struts-2.1.8/lib/struts2-convention-plugin-2.1.8.jar"/>
+	<classpathentry kind="lib" path="K:/ENI/DeveloppementEJB3/jasperReports/jasperreports-3.6.1.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.generic.runtimeTarget/JBoss v5.0 2">
+		<attributes>
+			<attribute name="owner.project.facets" value="jst.web"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jre1.6.0_07">
+		<attributes>
+			<attribute name="owner.project.facets" value="jst.java"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="output" path="WebContent/WEB-INF/classes"/>
+</classpath>

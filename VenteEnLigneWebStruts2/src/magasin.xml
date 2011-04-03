@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE struts PUBLIC  
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"  
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>  
+   
+ <constant name="struts.custom.i18n.resources" value="global-messages" />
+ 
+ <package name="magasin"  extends="login">  
+ 
+	 <result-types>
+	    <result-type name="jasper" class="org.apache.struts2.views.jasperreports.JasperReportsResult"/>
+	</result-types>
+    
+    <!--  DEBUT MAGASIN -->
+    <action name="afficheMagasin" class="com.eni.dvtejb.clientStruts2.action.MagasinAction">
+		<result type="tiles" name="success">VenteEnLigne.afficheMagasin</result>
+	</action>
+	
+	<action name="visualiser" class="com.eni.dvtejb.clientStruts2.action.MagasinAction"  method="visualiser">
+		<result type="tiles" name="success">VenteEnLigne.visualiserArticle</result>
+	</action>
+	
+	<action name="afficherImage" class="com.eni.dvtejb.clientStruts2.action.AffichageImageAction">
+		<result type="tiles" name="success">VenteEnLigne.visualiserArticle</result>
+	</action>	
+	
+	<action name="ajouterArticle" class="com.eni.dvtejb.clientStruts2.action.MagasinAction"  method="ajouterArticle">
+		<result type="tiles" name="success">VenteEnLigne.visualiserPanier</result>
+	</action>
+	
+	<action name="supprimerArticle" class="com.eni.dvtejb.clientStruts2.action.MagasinAction"  method="supprimerArticle">
+		<result type="tiles" name="success">VenteEnLigne.visualiserPanier</result>
+	</action>
+	
+	<action name="afficherPanier" class="com.eni.dvtejb.clientStruts2.action.MagasinAction"  method="afficherPanier">
+		<result type="tiles" name="success">VenteEnLigne.visualiserPanier</result>
+	</action>
+	
+	<!-- Redirection  -->
+	<action name="viderPanier" class="com.eni.dvtejb.clientStruts2.action.MagasinAction"  method="viderPanier">
+		 <result name="success" type="redirectAction">
+		    <param name="actionName">ajouterArticle</param>
+		 </result>		
+	</action>
+		
+	<action name="commander" class="com.eni.dvtejb.clientStruts2.action.MagasinAction" >
+		<result type="tiles" name="success">VenteEnLigne.payer</result>
+	</action>
+	
+	<action name="payer" class="com.eni.dvtejb.clientStruts2.action.PaiementAction"  method="payer">
+		<result type="tiles" name="error">VenteEnLigne.payer</result>
+		<result type="tiles" name="success">VenteEnLigne.commanderConfirm</result>
+	</action>
+	
+	<action name="historiquecommandes" class="com.eni.dvtejb.clientStruts2.action.MagasinAction"  method="afficherHistoCommandes">
+		<result type="tiles" name="success">VenteEnLigne.histoCommandes</result>
+	</action>
+	
+	<action name="recherche" class="com.eni.dvtejb.clientStruts2.action.RechercheAction" method="rechercheGlobal">
+		<result type="tiles" name="input">VenteEnLigne.rechercher</result>
+		<result type="tiles" name="success">VenteEnLigne.resultatsRecherche</result>
+	</action>
+	
+	 <action name="afficheFichePDF" class="com.eni.dvtejb.clientStruts2.action.JasperArticleAction">
+        <result name="success" type="jasper">
+            <param name="location">rapports\ficheArticle.jasper</param>
+            <param name="dataSource">artDetails</param>
+            <param name="format">PDF</param>
+            <param name="reportParameters">paramsRapport</param>
+        </result>
+    </action>
+		
+    <!--  FIN MAGASIN -->
+
+ </package>  
+</struts>

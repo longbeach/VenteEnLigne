@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE struts PUBLIC  
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"  
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>  
+ <constant name="struts.custom.i18n.resources" value="global-messages" />
+<package name="administration" extends="struts-default">
+
+ <!--  DEBUT TILES  -->
+  <result-types>
+     	<!-- Defini le type de résultat qui renvoie vers une definition Tiles -->
+       	<result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult" />
+  </result-types>
+  <!--  FIN TILES  -->	 
+  
+  <interceptors>
+ 		<interceptor-stack name="appDefault">
+        	 <interceptor-ref name="defaultStack">
+      			<param name="exception.logEnabled">true</param>
+      			<param name="exception.logLevel">ERROR</param>
+   			</interceptor-ref>
+ 	    </interceptor-stack>
+  </interceptors>
+
+<!--  <default-interceptor-ref name="defaultStack" />-->
+<default-interceptor-ref name="appDefault" />
+  
+  <!-- Ce result est disponible pour toutes les actions du package -->
+  <global-results>
+    <result type="tiles" name="PermissionKO">VenteEnLigne.AccesInterdit</result>
+  </global-results>
+  
+  <global-exception-mappings>
+  	<exception-mapping result="PermissionKO" exception="javax.ejb.EJBAccessException"></exception-mapping>
+  </global-exception-mappings>
+  
+  <!--  C'est une action qui ne nécessite pas de traitement. Elle ne sert qu'à faire le lien. -->
+  <action name="accueilAdmin">			
+		<result type="tiles">VenteEnLigne.administration</result>
+ 		<result type="tiles" name="input">VenteEnLigne.administration</result>
+  </action>
+  
+  <!-- Debut  Administration des clients -->
+
+	<action name="list" method="execute" class="com.eni.dvtejb.clientStruts2.action.AdministrationAction">			
+		<result type="tiles">VenteEnLigne.administrationUtilisateurs</result>
+		<result type="tiles" name="input">VenteEnLigne.administrationUtilisateurs</result>
+    </action>
+        
+    <action name="list2" method="rechercheTous" class="com.eni.dvtejb.clientStruts2.action.AdministrationAction">				
+			<result>/administration/listeClients.jsp</result>
+			<result  name="input">/administration/listeClients.jsp</result>		
+    </action>
+    
+	<action name="supprimer" class="com.eni.dvtejb.clientStruts2.action.AdministrationAction" method="remove">
+				<result>/administration/listeClients.jsp</result>
+			<result  name="input">/administration/listeClients.jsp</result>
+    </action>
+
+   <!--  Cette action traite la modification ET l'ajout d'un utilisateur -->
+	<action name="sauvegarder" class="com.eni.dvtejb.clientStruts2.action.AdministrationAction" method="save">
+				<result>/administration/listeClients.jsp</result>
+			<result  name="input">/administration/listeClients.jsp</result>
+    </action>
+    
+    <!-- Fin  Administration des clients -->
+    
+    <!-- Debut Administration des articles -->
+    
+    <action name="listeArticles" method="execute" class="com.eni.dvtejb.clientStruts2.action.AdministrationArticlesAction">			
+		<result type="tiles">VenteEnLigne.administrationArticles</result>
+		<result type="tiles" name="input">VenteEnLigne.administrationArticles</result>
+    </action>
+        
+    <action name="list2Articles" method="rechercheTous" class="com.eni.dvtejb.clientStruts2.action.AdministrationArticlesAction">				
+			<result>/administration/listeArticles.jsp</result>
+			<result  name="input">/administration/listeArticles.jsp</result>		
+    </action>
+    
+	<action name="supprimerAdminArticle" class="com.eni.dvtejb.clientStruts2.action.AdministrationArticlesAction" method="remove">
+			<result>/administration/listeArticles.jsp</result>
+			<result  name="input">/administration/listeArticles.jsp</result>
+    </action>
+
+   <!--  Cette action traite la modification ET l'ajout d'un utilisateur -->
+	<action name="sauvegarderArticle" class="com.eni.dvtejb.clientStruts2.action.AdministrationArticlesAction" method="save">
+			<result>/administration/listeArticles.jsp</result>
+			<result  name="input">/administration/listeArticles.jsp</result>
+    </action>
+    
+    <!-- Fin Administration des articles -->
+    
+    
+ </package>
+</struts>
