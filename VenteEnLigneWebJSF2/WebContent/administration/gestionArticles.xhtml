@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">    
+<ui:composition 
+		xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        template="/templates/templateAdmin.xhtml">
+          
+ <ui:define name="titre">  <h:outputText value="#{lesMessages.administration_gestionArticlesTitre}"/> </ui:define>
+    <ui:define name="contenu">
+    <center>
+    <f:view locale="#{loginBean.locale}">
+    <f:loadBundle basename="com.eni.dvtejb.clientJSF2.messages" var="lesMessages"/>
+        <h:form  id="FormAdminArticles">
+        
+        <div align="right" >
+		 <h:graphicImage url="/images/utilisateur.gif"  /><br />
+		 <h:outputText value="#{lesMessages.general_nom}" /> : 
+		 <h:outputText value="#{sessionScope.loginBean.admin.nom}" render="#{not empty sessionScope.loginBean.admin.nom}" />
+		 <h:outputText value="#{sessionScope.loginBean.gest.nom}" render="#{not empty sessionScope.loginBean.gest.nom}" />		 
+		 <br/>
+		 <h:outputText value="#{lesMessages.general_prenom}" />:  
+		 <h:outputText value="#{sessionScope.loginBean.admin.prenom}" render="#{not empty sessionScope.loginBean.admin.prenom}" />
+		 <h:outputText value="#{sessionScope.loginBean.gest.prenom}" render="#{not empty sessionScope.loginBean.gest.prenom}" />	
+		</div>
+
+    <h2><h:outputText value="#{lesMessages.administration_gestionArticlesTitre}"/> </h2>
+    
+      <h4> <h:commandLink value="#{lesMessages.administration_ajoutArticle}"  action="#{administrationBean.ajouterArticle}" /></h4>
+
+   <h:dataTable value="#{administrationBean.listeArticlesModel}"  id="dtArticles"
+      var="article"  bgcolor="#F1F1F1" border="10" cellpadding="5" cellspacing="3" first="0" width="50%" dir="LTR" frame="hsides"
+	  rules="all" summary="Ceci est la dataTable pour l'administration des articles" rowClasses="Tableligne1,TableLigne2"
+	  columnClasses="TableColonne" styleClass="TableClass" headerClass="TableHeader">    
+
+       <h:column>    
+           <f:facet name="header" >    
+               <h:outputText value="#{lesMessages.admin_NomArticle}"/>    
+           </f:facet>                                                    
+           <h:outputText value="#{article.nom}"/>    
+       </h:column>    
+       <h:column>    
+           <f:facet name="header" >    
+               <h:outputText value="#{lesMessages.admin_PrixArticle}"/>    
+           </f:facet>                                                    
+           <h:outputText value="#{article.prix}"/>    
+       </h:column>    
+       <h:column>    
+           <f:facet name="header" >    
+               <h:outputText value="#{lesMessages.admin_ProduitID}"/>    
+           </f:facet>                                                    
+           <h:outputText value="#{article.produitFk.produitid}"/>    
+       </h:column>   
+        <h:column>    
+           <f:facet name="header" >    
+               <h:outputText value="#{lesMessages.admin_StockID}"/>    
+           </f:facet>                                                    
+           <h:outputText value="#{article.stockFK.stockid}"/>    
+       </h:column>  
+        <h:column>    
+           <f:facet name="header" >    
+               <h:outputText value="#{lesMessages.admin_quantite}"/>    
+           </f:facet>                                                    
+           <h:outputText value="#{article.stockFK.quantite}"/>    
+       </h:column>        
+       <h:column>                                                           
+           <h:commandLink value="#{lesMessages.admin_SupprimerArticle}"  action="#{administrationBean.supprimerArticle}" 
+             onclick="return confirm('Voulez-vous supprimer cet article #{article.nom}  ?');" >
+           		<f:ajax execute="@this" render="@form"  />
+                <f:param name="id" value="#{article.articleid}"/> 
+                <h:graphicImage url="../images/deleteArticle.png" /> 
+   		   </h:commandLink>   		  
+       </h:column>  
+       <h:column>                                                           
+           <h:commandLink value="#{lesMessages.admin_ModifierArticle}"  action="#{administrationBean.modifierArticle}" >
+                 <h:graphicImage url="../images/editArticle.png" /> 
+   		   </h:commandLink>   		  
+       </h:column>  
+	</h:dataTable>
+	
+        </h:form>
+     </f:view>
+     </center>
+    </ui:define>
+</ui:composition>

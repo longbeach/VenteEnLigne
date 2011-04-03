@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">    
+<ui:composition 
+		xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        template="/templates/template.xhtml">
+          
+ <ui:define name="titre">  <h:outputText value="Questionnaire"/> </ui:define>
+    <ui:define name="contenu">
+    <center>
+    
+    <f:view >
+    <f:loadBundle basename="com.eni.dvtejb.clientJSF2.messages" var="lesMessages"/>
+        <h:form>
+        <body>
+	<center>
+	
+			<h2>Question aléatoire</h2>
+			<h4>Aidez-nous à connaître vos attentes en répondant à la question aléatoire suivante :</h4>
+						
+	<h:panelGrid columns="2" cellpadding="3px">       
+                <h:outputLabel for="laQuestion" value="Question :"/>
+                <h:outputText type="text" id="laQuestion"  value="#{questionnaireVenteEnLigne.questionAleatoire}" />
+
+				<h:outputLabel for="laReponse" value="Réponse :"/>
+                <h:inputText id="laReponse" size="100" value="#{questionnaireVenteEnLigne.reponse}"/>                   
+      </h:panelGrid>
+  <h:commandButton value="Soumettre" action="#{questionnaireVenteEnLigne.sauverReponse}"  />
+    </center>
+     </body>
+        </h:form>
+         <h4> <h:messages  /></h4>
+     </f:view>
+     </center>
+    </ui:define>
+</ui:composition>

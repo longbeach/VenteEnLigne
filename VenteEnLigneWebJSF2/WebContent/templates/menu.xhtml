@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML Basic 1.1//EN"
+    "http://www.w3.org/TR/xhtml-basic/xhtml-basic11.dtd">
+<html 
+ 	xmlns:h="http://java.sun.com/jsf/html"
+  	xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition>
+
+<f:view >
+<f:loadBundle basename="com.eni.dvtejb.clientJSF2.messages" var="lesMessages"/>
+   <h:form  >
+
+<table width="100" height="100%" cellspacing="0" cellpadding="16" style="border:1 solid black" >
+
+<tr>
+  <td>
+    <h2><h:outputText value="#{lesMessages.menu_menu}"/> </h2>
+  </td>
+</tr>
+
+<tr>
+  <td width="100" valign="top">		
+	<h:outputLink value="#{request.contextPath}/principal/accueil.jsf"> 
+		<h:graphicImage value="/images/menu_accueil.png"/> <br /> <h:outputText value="#{lesMessages.menu_accueil}"/> 
+	</h:outputLink>
+  </td>
+</tr>
+
+<tr>
+  <td width="100" valign="top">
+    <h:outputLink value="#{request.contextPath}/profil/profil.jsf"> 
+    <h:graphicImage value="/images/portrait.jpg"/> <br /><h:outputText value="#{lesMessages.menu_Lien1}" />
+    </h:outputLink>
+  </td>
+</tr>
+
+<tr>
+  <td width="100" valign="top">
+    <h:outputLink value="#{request.contextPath}/magasin/listeArticles.jsf"> 
+    <h:graphicImage value="/images/etageres.jpg"/> <br /><h:outputText value="#{lesMessages.menu_Lien2}"/>
+    </h:outputLink>
+  </td>
+</tr>
+
+<tr>
+  <td width="100" valign="top"> 
+    <h:outputLink value="#{request.contextPath}/magasin/historiqueCommandes.jsf">
+    	<h:graphicImage value="/images/historique.gif"/>  <br /><h:outputText value="#{lesMessages.menu_Lien3}"/>
+    </h:outputLink>
+  </td>
+</tr>
+
+<tr>
+  <td width="100" valign="top">
+     <h:outputLink value="#{request.contextPath}/magasin/recherche.jsf"> 
+        <h:graphicImage value="/images/recherche.gif"/> <br /><h:outputText value="#{lesMessages.menu_Lien4}"/>
+    </h:outputLink>
+  </td>
+</tr>
+
+<tr>
+  <td width="100" valign="top">
+      <h:outputLink value="#{request.contextPath}/contact/contact.jsf"> 
+      <h:graphicImage value="/images/question.png"/> <br /> <h:outputText value="#{lesMessages.menu_Lien5}"/>
+    </h:outputLink>
+  </td>
+</tr>
+
+<tr>
+  <td width="100" valign="top">
+      <h:outputText value="#{lesMessages.menu_Lien6}" /><br />
+      <h:selectOneMenu value="#{loginBean.langue}"  
+      		valueChangeListener="#{loginBean.changerLangueComboBox}" onchange="submit()" >
+      		 <f:selectItem itemLabel="#{lesMessages.menu_Lien61}" itemValue="langue"/>
+      		 <f:selectItem itemLabel="#{lesMessages.menu_Lien62}" itemValue="fr"/>  
+	         <f:selectItem itemLabel="#{lesMessages.menu_Lien63}" itemValue="en"/>  
+      </h:selectOneMenu>
+  </td>
+</tr>
+
+<tr>
+  <td width="100" valign="top">
+    <h:commandLink value="#{lesMessages.menu_deconnexion}" action="#{loginBean.deconnexion}" />
+  </td>
+</tr>
+
+</table>
+</h:form>
+</f:view>
+</ui:composition>
+
+</html>

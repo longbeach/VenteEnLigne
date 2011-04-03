@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    
+<html xmlns="http://www.w3.org/1999/xhtml"
+ 		xmlns:f="http://java.sun.com/jsf/core"
+		xmlns:h="http://java.sun.com/jsf/html"
+    	xmlns:ui="http://java.sun.com/jsf/facelets">    
+    
+<!--<body>    -->
+<ui:composition>
+
+<f:view>
+   <h:form>
+	  <f:loadBundle basename="com.eni.dvtejb.clientJSF2.messages" var="lesMessages"/>
+		<table  width="100%" cellspacing="0" cellpadding="0" style="border:1 solid black" bgcolor="#0683FF">
+		<tr>
+		    <td valign="middle">
+		        <div valign="center" >
+		        <font size="8"><strong><center>
+		        <!--  Le composant UIGraphic  represente une image  -->
+		         	<h:graphicImage url="../images/logoJBoss.png" /> <h:outputText value="#{lesMessages.footer_titre}"/>  <h:graphicImage url="../images/EJBS_petite.png" />
+		        </center></strong></font>
+		        </div>
+		    </td>
+		</tr>
+		</table>	
+	 </h:form>
+ </f:view>
+ 
+</ui:composition>
+<!--</body>-->
+</html>

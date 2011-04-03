@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">    
+<ui:composition 
+		xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        template="/templates/templateAdmin.xhtml">
+          
+ <ui:define name="titre">  <h:outputText value="Interface de reporting"/> </ui:define>
+    <ui:define name="contenu">
+    <center>
+    <f:view locale="#{loginBean.locale}">
+    <f:loadBundle basename="com.eni.dvtejb.clientJSF2.messages" var="lesMessages"/>
+        <h:form  id="FormReporting">
+        
+        <div align="right" >
+		 <h:graphicImage url="/images/utilisateur.gif"  /><br />
+		 <h:outputText value="#{lesMessages.general_nom}" /> : 
+		 <h:outputText value="#{sessionScope.loginBean.admin.nom}" render="#{not empty sessionScope.loginBean.admin.nom}" />
+		 <h:outputText value="#{sessionScope.loginBean.gest.nom}" render="#{not empty sessionScope.loginBean.gest.nom}" />		 
+		 <br/>
+		 <h:outputText value="#{lesMessages.general_prenom}" />:  
+		 <h:outputText value="#{sessionScope.loginBean.admin.prenom}" render="#{not empty sessionScope.loginBean.admin.prenom}" />
+		 <h:outputText value="#{sessionScope.loginBean.gest.prenom}" render="#{not empty sessionScope.loginBean.gest.prenom}" />	
+		</div>
+
+    <h2><h:outputText value="Interface de reporting"/> </h2>
+      <h4> <h:commandLink value="Générer le tableau croisé dynamique"  action="generationRapport"
+		actionListener="#{rapportBean.genererRapport}" /></h4>
+	
+        </h:form>
+     </f:view>
+     </center>
+    </ui:define>
+</ui:composition>

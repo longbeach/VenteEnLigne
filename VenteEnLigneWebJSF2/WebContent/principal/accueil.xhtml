@@ -1,0 +1,38 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    template="/templates/template.xhtml">
+
+	<ui:define name="titre">
+	       <h:outputText value="#{lesMessages.accueil_titre}" />
+	</ui:define>
+	<ui:define name="contenu">
+	<p/>
+		<f:view locale="#{loginBean.locale}">		 
+	    <f:loadBundle basename="com.eni.dvtejb.clientJSF2.messages" var="lesMessages"/>
+		<center>		
+			<h2>   <h:outputText value="#{lesMessages.accueil_titre}" /> </h2> 			
+			    
+<h:outputLink value="#{request.contextPath}/profil/profil.jsf">  <h:outputText value="#{lesMessages.menu_Lien1}" /> </h:outputLink>
+ ----
+<h:outputLink value="#{request.contextPath}/magasin/listeArticles.jsf"><h:outputText value="#{lesMessages.menu_Lien2}"/></h:outputLink>
+ ----
+<h:outputLink value="#{request.contextPath}/magasin/historiqueCommandes.jsf"><h:outputText value="#{lesMessages.menu_Lien3}"/></h:outputLink>    
+<br /><br />
+<h:outputLink value="#{request.contextPath}/magasin/recherche.jsf"><h:outputText value="#{lesMessages.menu_Lien4}"/></h:outputLink>
+ ----
+<h:outputLink value="#{request.contextPath}/commun/contact.jsf"><h:outputText value="#{lesMessages.menu_Lien5}"/></h:outputLink> 
+   
+		</center>
+		<br />
+		
+		<div align="right" >
+		 <h:graphicImage url="/images/utilisateur.gif"  /><br />
+		 <h:outputText value="#{lesMessages.general_nom}" /> : <h:outputText value="#{sessionScope.loginBean.client.nom}"/><br/>
+		 <h:outputText value="#{lesMessages.general_prenom}" />:  <h:outputText value="#{sessionScope.loginBean.client.prenom}"/>
+		</div>
+		
+		</f:view>
+	</ui:define>
+</ui:composition>

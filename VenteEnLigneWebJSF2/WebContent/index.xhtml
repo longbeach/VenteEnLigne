@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:ui="http://java.sun.com/jsf/Facelets">
+  
+ <head>
+  <title><h:outputText value="#{lesMessages.titre}"/></title>
+   <link rel="stylesheet" type="text/css" href="css/styles.css"  />
+ </head>
+
+<f:view locale="#{loginBean.locale}">
+
+<f:loadBundle basename="com.eni.dvtejb.clientJSF2.messages" var="lesMessages"/>
+ <h:form >
+        <body>
+	<center>
+
+     <br/><br/><br/>  
+   <h:panelGrid styleClass="table1" columns="1" style="text-align:center"> 
+   
+   <f:facet name="header">
+    <h:outputText value="#{lesMessages.index_sousTitre}"/>
+   </f:facet>
+   
+     <h:panelGroup  >     
+	      <h:outputLink value="#{request.contextPath}/login/login.jsf"><h:graphicImage url="/images/login_icon.jpg"  /></h:outputLink>
+		<h:outputLink value="#{request.contextPath}/inscription/inscription.jsf"><h:graphicImage url="/images/inscription_icon.png"  /></h:outputLink>
+	</h:panelGroup>
+   
+    <h:panelGroup>
+	    <h:outputLink value="#{request.contextPath}/login/login.jsf"><h:outputText value="#{lesMessages.label_connexion}"/></h:outputLink> | 
+		<h:outputLink value="#{request.contextPath}/inscription/inscription.jsf"><h:outputText value="#{lesMessages.label_inscrire}"/></h:outputLink>
+	</h:panelGroup>
+	
+	<br/>
+	
+	  <h:panelGroup >
+	  <h:commandLink value="#{lesMessages.langueFR}" action="#{loginBean.changerLangue}" style="font-family:arial, verdana;font-size:12px;">
+	  	<f:param name="langue" value="fr"/> 
+	  	<h:graphicImage value="/images/FR_drapeau.gif"/>
+	  </h:commandLink>
+
+	   <h:commandLink value="#{lesMessages.langueEN}" action="#{loginBean.changerLangue}" style="font-family:arial, verdana;font-size:12px;">
+	  	<f:param name="langue" value="en"/> 
+	  	<h:graphicImage value="/images/EN_drapeau.gif"/>
+	  </h:commandLink>
+	</h:panelGroup>
+	  
+ </h:panelGrid>
+ 
+    <br /><br /><br />
+     <h:outputLink value="#{request.contextPath}/login/oubliMDP.jsf"><h:outputText value="#{lesMessages.index_oubliMDP}"/></h:outputLink>
+	</center>
+     </body>
+ </h:form>
+</f:view>
+</html>

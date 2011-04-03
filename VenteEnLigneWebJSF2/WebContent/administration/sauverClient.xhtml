@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">    
+<ui:composition 
+		xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        template="/templates/templateAdmin.xhtml">
+          
+ <ui:define name="titre">  <h:outputText value="Modification / Création d'un client"/> </ui:define>
+    <ui:define name="contenu">
+    <center>
+    <f:view>
+    <f:loadBundle basename="com.eni.dvtejb.clientJSF2.messages" var="lesMessages"/>
+        <h:form  id="FormSauverClient">
+        
+        <div align="right" >
+		 <h:graphicImage url="/images/utilisateur.gif"  /><br />
+		 <h:outputText value="#{lesMessages.general_nom}" /> : 
+		 <h:outputText value="#{sessionScope.loginBean.admin.nom}" render="#{not empty sessionScope.loginBean.admin.nom}" />
+		 <h:outputText value="#{sessionScope.loginBean.gest.nom}" render="#{not empty sessionScope.loginBean.gest.nom}" />		 
+		 <br/>
+		 <h:outputText value="#{lesMessages.general_prenom}" />:  
+		 <h:outputText value="#{sessionScope.loginBean.admin.prenom}" render="#{not empty sessionScope.loginBean.admin.prenom}" />
+		 <h:outputText value="#{sessionScope.loginBean.gest.prenom}" render="#{not empty sessionScope.loginBean.gest.prenom}" />	
+		</div>
+		
+		<h2><h:outputText value="Création" rendered="#{administrationBean.render1}" /> </h2>
+		<h2><h:outputText value=" Modification de client" rendered="#{administrationBean.render2}" /> </h2>
+
+  <h:panelGrid columns="2" cellpadding="3px">    
+   
+                <h:outputLabel for="leNom" value="Nom"/>
+                <h:inputText type="text" id="leNom"  value="#{administrationBean.clientCourant.nom}" />
+
+				<h:outputLabel for="lePrenom" value="Prenom"/>
+                <h:inputText id="lePrenom"  value="#{administrationBean.clientCourant.prenom}"/>
+                
+                <h:outputLabel for="lemail" value="Email"/>
+                <h:inputText  id="lemail"  value="#{administrationBean.clientCourant.email}"/>
+                
+                <h:outputLabel for="lelogin" value="Login"/>
+                <h:inputText  id="lelogin"  value="#{administrationBean.clientCourant.login}"/>
+                
+                <h:outputLabel for="lePassword" value="Password"/>
+                <h:inputText  id="lePassword"  value="#{administrationBean.clientCourant.password}"/>
+                
+                <h:outputLabel for="leTitre" value="Titre"/>
+                <h:inputText  id="leTitre"  value="#{administrationBean.clientCourant.titre}"/>
+                
+                <h:outputLabel for="leFax" value="Fax"/>
+                <h:inputText  id="leFax"  value="#{administrationBean.clientCourant.fax}"/>
+                
+                <h:outputLabel for="leTelephone" value="Telephone"/>
+                <h:inputText  id="leTelephone"  value="#{administrationBean.clientCourant.telephone}"/>
+               
+                <h:commandButton value="Créer" action="#{administrationBean.sauverClient}"  
+                disabled="#{administrationBean.desactive1}" />
+                <h:commandButton value="Modifier" action="#{administrationBean.sauverClient}"  
+                disabled="#{administrationBean.desactive2}"  />
+     
+      </h:panelGrid>	
+        </h:form>
+       <h4> <h:messages showDetail ="true" /></h4>
+     </f:view>
+     </center>
+    </ui:define>
+</ui:composition>      

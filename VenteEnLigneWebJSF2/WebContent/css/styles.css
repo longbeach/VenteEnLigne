@@ -1,0 +1,108 @@
+body {
+  background:#ffffff;
+  font-family: verdana;
+  font-size: 12pt;
+  font-weight: bold;
+  color: #055265;
+}
+
+A:link {
+  font-family: verdana;
+  font-size: 12pt;
+  color: #055265;
+  text-decoration:underline
+}
+
+A:visited {
+  font-family: verdana;
+  font-size: 12pt;
+  color: #055265;
+  text-decoration:underline
+}
+
+A:hover {
+  font-family: verdana;
+  font-size: 12pt;
+  color: #B12907;
+  text-decoration:none
+}
+
+.ErrorMessage {
+  font-family: verdana;
+  font-size: 10pt;
+  color: #FF0000;
+} 
+
+.table1 {
+	background-color:#FFFFFF;
+	border:solid 2px #009900;
+	margin-top:15px;
+}
+
+h2 {
+	color: #087d9a;
+}
+
+h1 {
+	color: #087d9a;
+}
+
+.TableLigne1 {
+	background-color: #D0E6E0;
+}
+
+.TableLigne2 {
+	background-color: #E8F7F1;
+}
+
+.TableColonne {
+	text-align: center
+}
+
+.TableClass {
+	font-family : verdana, Geneva, Arial,
+	Helvetica, sans-serif;
+	font-size: 13px;
+	color: #000000;
+	padding: 2;
+	border-style: solid;
+	border-width: 2px;
+}
+
+.TableHeader {
+	color: #000000;
+	background-color: #F1F1F1;
+	padding: 3;
+	text-align: center;
+	border: none;
+}
+
+.errors {
+   font-style: italic;
+}
+.LignesImpaires {
+   background: Coral;
+}
+.LignesPaires {
+    background: Tan;
+}
+
+.LigneHeader{
+   text-align: center;
+   font-style: italic;
+   color: WhiteSmoke;
+   background: Teal;
+}
+
+.LigneFooter{
+   text-align: center;
+   font-style: italic;
+   color: WhiteSmoke;
+   background: Teal;
+}
+
+.plGrid {
+	background-color: #B1CBE1;
+    color: #000000;
+}
+

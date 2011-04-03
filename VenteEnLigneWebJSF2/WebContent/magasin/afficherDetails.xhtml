@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">    
+<ui:composition 
+		xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        template="/templates/template.xhtml"
+        xmlns:ez="http://java.sun.com/jsf/composite/ezcomp">
+           
+ <ui:define name="titre">  <h:outputText value="Details de l'article"/> </ui:define>
+ <ui:define name="contenu">
+    <center>
+      <f:metadata>
+     	 <f:viewParam name="id" value="#{magasinBean.detailsArticleId}" />
+     </f:metadata> 
+     
+    <f:view beforePhase="#{magasinBean.afficherDetails}" >
+    
+    L'ID vaut : <h:outputText value="#{magasinBean.detailsArticleId}" /> <br />
+    
+     <f:loadBundle basename="com.eni.dvtejb.clientJSF2.messages" var="lesMessages"/>
+        <h:form>
+    
+      <div align="right" >
+		 <h:graphicImage url="/images/utilisateur.gif"  /><br />
+		 <h:outputText value="#{lesMessages.general_nom}" /> : <h:outputText value="#{sessionScope.loginBean.client.nom}"/><br/>
+		 <h:outputText value="#{lesMessages.general_prenom}" />:  <h:outputText value="#{sessionScope.loginBean.client.prenom}"/>
+		</div>
+		
+       <h1>Détails de l'article</h1>
+   
+ 		<ez:detailsArticle IdArt="#{magasinBean.article.articleid}"  NomArt="#{magasinBean.article.nom}" 
+  		PrixArt="#{magasinBean.article.prix}" 
+  		ImageArt="/AfficheImageServlet?numeroId=#{magasinBean.article.articleid}"/>
+		
+		<p>	<h:outputText value="Quantité souhaitée : "/> <h:inputText value="#{magasinBean.quantite}"/></p>
+
+	   <br /><br />		
+	   <h:commandLink  value="Ajouter au panier"  action="#{magasinBean.ajouterArticle}" />           
+        </h:form>
+        
+        <br /><br />
+        <h:link outcome="listeArticles" > Retour à la page d'affichage de la liste des articles.</h:link>
+        
+     </f:view>
+     </center>
+    </ui:define>
+</ui:composition>

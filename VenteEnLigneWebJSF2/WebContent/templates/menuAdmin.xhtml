@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML Basic 1.1//EN"
+    "http://www.w3.org/TR/xhtml-basic/xhtml-basic11.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+ 	xmlns:h="http://java.sun.com/jsf/html"
+  	xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets">
+<!--<body> -->
+<ui:composition>
+
+<f:view >
+
+<f:loadBundle basename="com.eni.dvtejb.clientJSF2.messages" var="lesMessages"/>
+   <h:form  >
+<table width="100" height="100%" cellspacing="0" cellpadding="16" style="border:1 solid black" >
+
+<tr>
+  <td>
+    <h2><h:outputText value="#{lesMessages.menu_menu}"/> </h2>
+  </td>
+</tr>
+
+<tr>
+  <td width="100" valign="top">		
+	<h:outputLink value="#{request.contextPath}/principal/accueil.jsf"> 
+		<h:graphicImage value="/images/menu_accueil.png"/> <br /> <h:outputText value="#{lesMessages.menu_accueil}"/> 
+	</h:outputLink>
+  </td>
+</tr>
+
+<tr>
+  <td width="100" valign="top">
+    <h:outputLink value="#{request.contextPath}/administration/gestionClients.jsf"> 
+    <h:graphicImage value="/images/gestionClients.png"/> <br /><h:outputText value="Gestion des clients (Administrateurs et partiellement
+    Gestionnaires)"/>
+    </h:outputLink>
+  </td>
+</tr>
+
+<tr>
+  <td width="100" valign="top"> 
+    <h:outputLink value="#{request.contextPath}/administration/gestionArticles.jsf">
+    	<h:graphicImage value="/images/GestionArticles.gif"/>  <br /><h:outputText value="Gestion des articles (Administrateurs
+    	et Gestionnaires)"/>
+    </h:outputLink>
+  </td>
+</tr>
+
+<tr>
+  <td width="100" valign="top"> 
+    <h:outputLink value="#{request.contextPath}/administration/reporting.jsf">
+    	<h:graphicImage value="/images/Rapports.jpg"/>  <br /><h:outputText value="Reporting (Administrateurs
+    	et Gestionnaires)"/>
+    </h:outputLink>
+  </td>
+</tr>
+
+<tr>
+  <td width="100" valign="top">
+    <h:commandLink value="#{lesMessages.menu_deconnexion}" action="#{loginBean.deconnexion}" />
+  </td>
+</tr>
+
+</table>
+</h:form>
+</f:view>
+</ui:composition>
+<!--</body>-->
+</html>

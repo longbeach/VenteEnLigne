@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+	<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui=" http://java.sun.com/jsf/Facelets">
+  
+<h:head>
+  <title><h:outputText value="Oubli du mot de passe"/></title>
+   <link rel="stylesheet" type="text/css" href="../css/styles.css"  />
+</h:head>
+   
+<f:view locale="#{loginBean.locale}">
+<f:loadBundle basename="com.eni.dvtejb.clientJSF2.messages" var="lesMessages"/> 
+<center>   
+ <h:form id="Form1" prependId="false">
+      <h:body>
+
+	  <br /><br /><br /><br />
+	<h:panelGrid columns="2"  id="panel" border="1" bgcolor="#CECEFF">
+		<f:facet name="header">
+    		<h:outputText value="Oubli du mot de passe"/>
+  		</f:facet>
+	    <h:outputLabel for="login" value="#{lesMessages.login_label1}" />
+		<h:inputText id="login" value="#{loginBean.login}" required="true" />
+		<h:outputLabel for="password" value="Entrez votre email:" />
+	    <h:inputText id="email" value="#{loginBean.email}" required="true" />	
+        <f:facet name="footer">
+    		<h:panelGroup style="display:block; text-align:center">
+     			 <h:commandButton id="submit" value="Valider" action="#{loginBean.oubliMDP}" >
+     		 		<f:ajax execute="login email" render="Form1:champMDP"  />
+     		 	 </h:commandButton>
+            </h:panelGroup>
+         </f:facet>				  
+	</h:panelGrid>
+    <br />
+    <h2><h:outputText value="#{loginBean.password}" id="champMDP" /></h2>
+	<h:messages />
+
+	 </h:body>
+	 </h:form>
+	 
+	 <h:outputLink value="#{request.contextPath}/index.jsf"> Retour à la page index </h:outputLink>
+</center>
+</f:view>
+</html>

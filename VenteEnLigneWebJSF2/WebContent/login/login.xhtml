@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+	<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui=" http://java.sun.com/jsf/Facelets">
+  
+<head>
+  <title><h:outputText value="#{lesMessages.login_titre}"/></title>
+   <link rel="stylesheet" type="text/css" href="../css/styles.css"  />
+</head>
+
+   
+<f:view locale="#{loginBean.locale}">
+
+<f:loadBundle basename="com.eni.dvtejb.clientJSF2.messages" var="lesMessages"/>    
+ <h:form>
+      <body>
+	  <center>
+	  <br /><br /><br /><br />
+	<h:panelGrid columns="2"  id="panel" border="1" bgcolor="#CECEFF">
+		<f:facet name="header">
+    		<h:outputText value="#{lesMessages.login_label3}"/>
+  		</f:facet>
+	    <h:outputLabel for="login" value="#{lesMessages.login_label1}" />
+		<h:inputText id="login" value="#{loginBean.login}" required="true" />
+		<h:outputLabel for="password" value="#{lesMessages.login_label2}" />
+	    <h:inputSecret id="password" value="#{loginBean.password}" required="true" />	
+        <f:facet name="footer">
+    		<h:panelGroup style="display:block; text-align:center">
+     		 <h:commandButton id="submit" value="#{lesMessages.login_label4}" action="#{loginBean.verifierLogin}" >     		
+     		 </h:commandButton>
+            </h:panelGroup>
+         </f:facet>				  
+	</h:panelGrid>
+    
+	<h:messages />
+	 </center>
+	 </body>
+	 </h:form>
+</f:view>
+</html>

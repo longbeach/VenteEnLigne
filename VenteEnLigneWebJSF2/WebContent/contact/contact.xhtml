@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">    
+<ui:composition 
+		xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        template="/templates/template.xhtml">
+          
+ <ui:define name="titre">  <h:outputText value="#{lesMessages.listeArticles_titre}"/> </ui:define>
+    <ui:define name="contenu">
+    <center>
+    <f:view  locale="#{loginBean.locale}">
+    <f:loadBundle basename="com.eni.dvtejb.clientJSF2.messages" var="lesMessages"/>
+    
+    	<div align="right" >
+		 <h:graphicImage url="/images/utilisateur.gif"  /><br />
+		 <h:outputText value="#{lesMessages.general_nom}" /> : <h:outputText value="#{sessionScope.loginBean.client.nom}"/><br/>
+		 <h:outputText value="#{lesMessages.general_prenom}" />:  <h:outputText value="#{sessionScope.loginBean.client.prenom}"/>
+		</div>
+    
+    <h:outputText value="#{lesMessages.contact_Titre}" />
+
+    <h:form id="contactDetails">
+ 		<br />
+ 		<h:inputTextarea type="text" rows="10" cols="90" id="message"
+		    value="#{contactBean.message}" required="true"  >
+		    <f:converter converterId="commentairesConverter" />
+		   <f:validateLength minimum="20"/>
+	    </h:inputTextarea>
+		<br /><br />
+		<h:outputLabel value="#{lesMessages.contact_Email}" for="mailClient" />
+		<h:inputText  size="45" type="text" id="mailClient" value="#{contactBean.mailClient}" required="true">
+			<f:validator validatorId="verificationEmailClient"  />
+		</h:inputText>
+		<br /><br />
+		<h:outputLabel value="#{lesMessages.contact_mailCC}" for="mailCC" />
+		<h:selectBooleanCheckbox id="mailCC" value="#{contactBean.mailCC}" disabled="false" />
+		<br /><br /><br />
+		<h:commandButton type="submit" id="submit" 
+			action="#{contactBean.envoiMail}" value="#{lesMessages.contact_mailBouton}"/>
+		<br />
+     </h:form>
+	 <br /><br />
+	 <h:outputText value="#{lesMessages.contact_mailOK}" rendered="#{contactBean.mailEnvoye}" />		
+
+   	 <h:messages />
+     </f:view>
+     </center>
+    </ui:define>
+</ui:composition>  

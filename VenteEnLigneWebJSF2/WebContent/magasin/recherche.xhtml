@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">    
+<ui:composition 
+		xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        template="/templates/template.xhtml">
+          
+ <ui:define name="titre">  <h:outputText value="#{lesMessages.listeArticles_titre}"/> </ui:define>
+    <ui:define name="contenu">
+    <center>
+    <f:view beforePhase="#{rechercheJSFBean.rechercheListeProduits}"  locale="#{loginBean.locale}">
+    <f:loadBundle basename="com.eni.dvtejb.clientJSF2.messages" var="lesMessages"/>
+
+        <h:form>
+        <h2>Recherche d'articles</h2>
+        <h4>Sélectionnez votre critère de recherche</h4>
+        <h4/>
+        <table cellspacing="2" cellpadding="3" border="1" width="30%" >
+         
+          <tr align="center">
+            <td><h:outputText value="Produit"/></td>
+            <td>           
+            <h:selectOneListbox value="#{rechercheJSFBean.produitCritere}"> 
+              <f:selectItems value="#{rechercheJSFBean.nomsProduitsListe}"/>              
+            </h:selectOneListbox></td>
+            <td>  
+            <h:commandButton value="Recherche par produit" action="#{rechercheJSFBean.rechercheArticleParProduit}"/></td>
+          </tr>
+          
+           <tr  align="center">
+            <td><h:outputLabel value="Catalogue"/></td>
+            <td>          
+          <h:selectOneMenu value="#{rechercheJSFBean.catalogueCritere}">
+            <f:selectItems value="#{rechercheJSFBean.cataloguesListe}"/> 
+          </h:selectOneMenu>
+          </td>         
+            <td>
+          <h:commandButton value="Recherche par catalogue" action="#{rechercheJSFBean.rechercheArticleParCatalogue}"/></td>
+          </tr>          
+          
+        </table>
+
+      </h:form>
+     </f:view>
+     </center>
+    </ui:define>
+</ui:composition>        

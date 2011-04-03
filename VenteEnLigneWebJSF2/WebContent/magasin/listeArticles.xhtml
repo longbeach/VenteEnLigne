@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">    
+<ui:composition 
+		xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        template="/templates/template.xhtml">
+          
+ <ui:define name="titre">  <h:outputText value="#{lesMessages.listeArticles_titre}"/> </ui:define>
+    <ui:define name="contenu">
+    <center>
+    
+    <f:view >
+    <f:loadBundle basename="com.eni.dvtejb.clientJSF2.messages" var="lesMessages"/>
+        <h:form>
+        
+        <div align="right" >
+		 <h:graphicImage url="/images/utilisateur.gif"  /><br />
+		 <h:outputText value="#{lesMessages.general_nom}" /> : <h:outputText value="#{sessionScope.loginBean.client.nom}"/><br/>
+		 <h:outputText value="#{lesMessages.general_prenom}" />:  <h:outputText value="#{sessionScope.loginBean.client.prenom}"/>
+		</div>
+       
+      <h2>
+      	<h:outputFormat value="#{lesMessages.listeArticles_voici}">
+     		<f:param value="#{magasinBean.pagination.nombreArticles}"/>
+ 	  	</h:outputFormat>
+      </h2>
+      
+      <h3><h:outputText value="Articles #{magasinBean.pagination.premierArticle + 1} à #{magasinBean.pagination.dernierArticle}"/></h3>
+      <br /> <br />
+      <h:commandButton action="#{magasinBean.afficherPrecedentsArticles}" value="Précédent"  rendered="#{magasinBean.pagination.existeArticlesPrecedents}" />
+      &nbsp; &nbsp; &nbsp;
+      <h:commandButton action="#{magasinBean.afficherProchainsArticles}" value="Suivant" rendered="#{magasinBean.pagination.existeArticlesSuivants}"/>
+       <br /> <br />            
+
+   <h:dataTable value="#{magasinBean.listeArticlesMagasinModel}" rendered="#{not empty magasinBean.listeArticlesMagasinModel}" 
+      var="item"  bgcolor="#F1F1F1" border="10" cellpadding="5" cellspacing="3" first="0" width="50%" dir="LTR" frame="hsides"
+	  rules="all" summary="Ceci est la dataTable pour afficher la liste des articles" rowClasses="Tableligne1,TableLigne2"
+	  columnClasses="TableColonne" styleClass="TableClass" headerClass="TableHeader">    
+
+       <h:column>    
+           <f:facet name="header" >    
+               <h:outputText value="Nom catalogue"/>    
+           </f:facet>                                                    
+           <h:outputText value="#{item.nomCatalogue}"/>    
+       </h:column>    
+       <h:column>    
+           <f:facet name="header" >    
+               <h:outputText value="Nom produit"/>    
+           </f:facet>                                                    
+           <h:outputText value="#{item.nomProduit}"/>    
+       </h:column>    
+       <h:column>    
+           <f:facet name="header" >    
+               <h:outputText value="Nom article"/>    
+           </f:facet>                                                    
+           <h:outputText value="#{item.nomArticle}"/>    
+       </h:column>   
+     
+       <h:column>    
+           <f:facet name="header" >    
+               <h:outputText value="ID"/>    
+           </f:facet>                                                    
+           <h:outputText value="#{item.id}"/>    
+       </h:column>  
+        <h:column>    
+           <f:facet name="header" >    
+               <h:outputText value="Prix"/>    
+           </f:facet>                                                    
+           <h:outputText value="#{item.prix}"/>    
+       </h:column>  
+        <h:column>    
+           <f:facet name="header" >    
+               <h:outputText value="Quantite en stock"/>    
+           </f:facet>                                                    
+           <h:outputText value="#{item.quantite}"/>    
+       </h:column>  
+        <h:column>         
+       
+   		    <h:link value="Visualiser" outcome="afficherDetails"  includeViewParams="true">
+   		    	<f:param name="id" value="#{item.id}"/> 
+                 <h:graphicImage url="../images/loupe.png" /> 
+   		    </h:link>
+       </h:column>  
+	</h:dataTable>
+	
+	<h:outputLink value="#{request.contextPath}/magasin/panier.jsf">
+        	<h4> Voir mon panier</h4>        
+   </h:outputLink>
+	
+        </h:form>
+     </f:view>
+     </center>
+    </ui:define>
+</ui:composition>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">    
+<ui:composition 
+		xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        template="/templates/templateAdmin.xhtml">
+          
+ <ui:define name="titre">  <h:outputText value="#{lesMessages.listeArticles_titre}"/> </ui:define>
+    <ui:define name="contenu">
+    <center>
+    <f:view >
+    <f:loadBundle basename="com.eni.dvtejb.clientJSF2.messages" var="lesMessages"/>
+
+        <h:form>
+        
+        <div align="right" >
+		 <h:graphicImage url="/images/utilisateur.gif"  /><br />
+		 <h:outputText value="#{lesMessages.general_nom}" /> : 
+		 <h:outputText value="#{sessionScope.loginBean.admin.nom}" render="#{not empty sessionScope.loginBean.admin.nom}" />
+		 <h:outputText value="#{sessionScope.loginBean.gest.nom}" render="#{not empty sessionScope.loginBean.gest.nom}" />		 
+		 <br/>
+		 <h:outputText value="#{lesMessages.general_prenom}" />:  
+		 <h:outputText value="#{sessionScope.loginBean.admin.prenom}" render="#{not empty sessionScope.loginBean.admin.prenom}" />
+		 <h:outputText value="#{sessionScope.loginBean.gest.prenom}" render="#{not empty sessionScope.loginBean.gest.prenom}" />	
+		</div>
+		
+        <h:graphicImage url="../images/siteadministration.gif" /><br />
+        <h2>Interface d'administration </h2> 
+  
+        <h:outputLink value="#{request.contextPath}/administration/gestionClients.jsf">
+    	   <h4>Gestion des clients (Administrateurs et partiellement Gestionnaires)</h4>
+        </h:outputLink>
+           - 
+        <h:outputLink value="#{request.contextPath}/administration/gestionArticles.jsf">
+        	<h4> Gestion des articles (Administrateurs et  Gestionnaires)</h4>        
+        </h:outputLink>
+	    
+      </h:form>
+     </f:view>
+     </center>
+    </ui:define>
+</ui:composition>        

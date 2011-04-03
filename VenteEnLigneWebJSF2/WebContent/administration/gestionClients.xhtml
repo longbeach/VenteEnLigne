@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">    
+<ui:composition 
+		xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        template="/templates/templateAdmin.xhtml">
+          
+ <ui:define name="titre">  <h:outputText value="#{lesMessages.administration_gestionClientsTitre}"/> </ui:define>
+    <ui:define name="contenu">
+    <center>
+    <f:view locale="#{loginBean.locale}">
+    <f:loadBundle basename="com.eni.dvtejb.clientJSF2.messages" var="lesMessages"/>
+        <h:form  id="FormAdminClients">
+        
+        <div align="right" >
+		 <h:graphicImage url="/images/utilisateur.gif"  /><br />
+		 <h:outputText value="#{lesMessages.general_nom}" /> : 
+		 <h:outputText value="#{sessionScope.loginBean.admin.nom}" render="#{not empty sessionScope.loginBean.admin.nom}" />
+		 <h:outputText value="#{sessionScope.loginBean.gest.nom}" render="#{not empty sessionScope.loginBean.gest.nom}" />		 
+		 <br/>
+		 <h:outputText value="#{lesMessages.general_prenom}" />:  
+		 <h:outputText value="#{sessionScope.loginBean.admin.prenom}" render="#{not empty sessionScope.loginBean.admin.prenom}" />
+		 <h:outputText value="#{sessionScope.loginBean.gest.prenom}" render="#{not empty sessionScope.loginBean.gest.prenom}" />	
+		</div>
+
+    <h2><h:outputText value="#{lesMessages.administration_gestionClientsTitre}"/> </h2>
+    
+      <h4> <h:commandLink value="#{lesMessages.administration_ajoutClient}"  action="#{administrationBean.ajouter}" /></h4>
+
+   <h:dataTable value="#{administrationBean.listeClientsModel}"  id="dtClients"
+      var="client"  bgcolor="#F1F1F1" border="10" cellpadding="5" cellspacing="3" first="0" width="50%" dir="LTR" frame="hsides"
+	  rules="all" summary="Ceci est la dataTable pour l'administration des clients" rowClasses="Tableligne1,TableLigne2"
+	  columnClasses="TableColonne" styleClass="TableClass" headerClass="TableHeader">    
+
+       <h:column>    
+           <f:facet name="header" >    
+               <h:outputText value="#{lesMessages.admin_Nom}"/>    
+           </f:facet>                                                    
+           <h:outputText value="#{client.nom}"/>    
+       </h:column>    
+       <h:column>    
+           <f:facet name="header" >    
+               <h:outputText value="#{lesMessages.admin_Prenom}"/>    
+           </f:facet>                                                    
+           <h:outputText value="#{client.prenom}"/>    
+       </h:column>    
+       <h:column>    
+           <f:facet name="header" >    
+               <h:outputText value="#{lesMessages.admin_Email}"/>    
+           </f:facet>                                                    
+           <h:outputText value="#{client.email}"/>    
+       </h:column>        
+       <h:column>    
+           <f:facet name="header" >    
+               <h:outputText value="#{lesMessages.admin_Login}"/>    
+           </f:facet>                                                    
+           <h:outputText value="#{client.login}"/>    
+       </h:column>  
+       <h:column>    
+           <f:facet name="header" >    
+               <h:outputText value="#{lesMessages.admin_Password}"/>    
+           </f:facet>                                                    
+           <h:outputText value="#{client.password}"/>    
+       </h:column>  
+       <h:column>    
+           <f:facet name="header" >    
+               <h:outputText value="#{lesMessages.admin_Titre}"/>    
+           </f:facet>                                                    
+           <h:outputText value="#{client.titre}"/>    
+       </h:column>  
+       <h:column>    
+           <f:facet name="header" >    
+               <h:outputText value="#{lesMessages.admin_Fax}"/>    
+           </f:facet>                                                    
+           <h:outputText value="#{client.fax}"/>    
+       </h:column>  
+              <h:column>    
+           <f:facet name="header" >    
+               <h:outputText value="#{lesMessages.admin_Telephone}"/>    
+           </f:facet>                                                    
+           <h:outputText value="#{client.telephone}"/>    
+       </h:column>  
+       <h:column>                                                           
+           <h:commandLink value="#{lesMessages.admin_SupprimerClient}"  action="#{administrationBean.supprimerClient}" 
+             onclick="return confirm('Voulez-vous supprimer le client #{client.prenom} #{client.nom} ?');" >
+           		<f:ajax execute="@this" render="@form"  />
+                <f:param name="id" value="#{client.utilisateurid}"/> 
+                <h:graphicImage url="../images/delete_user.png" /> 
+   		   </h:commandLink>   		  
+       </h:column>  
+       <h:column>                                                           
+           <h:commandLink value="#{lesMessages.admin_ModifierClient}"  action="#{administrationBean.modifier}" >
+                 <h:graphicImage url="../images/edit_user.png" /> 
+   		   </h:commandLink>   		  
+       </h:column>  
+	</h:dataTable>
+	
+        </h:form>
+     </f:view>
+     </center>
+    </ui:define>
+</ui:composition>

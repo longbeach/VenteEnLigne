@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">    
+<ui:composition 
+		xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        template="/templates/template.xhtml">
+          
+ <ui:define name="titre">  <h:outputText value="#{lesMessages.listeArticles_titre}"/> </ui:define>
+    <ui:define name="contenu">
+    <center>
+    <f:view >
+    <f:loadBundle basename="com.eni.dvtejb.clientJSF2.messages" var="lesMessages"/>
+        <h:form>
+        
+         <div align="right" >
+		 <h:graphicImage url="/images/utilisateur.gif"  />
+		 	<f:verbatim><br /></f:verbatim>
+		 <h:outputText value="#{lesMessages.general_nom}" /> : <h:outputText value="#{sessionScope.loginBean.client.nom}"/>
+		 	<f:verbatim><br/></f:verbatim>
+		 <h:outputText value="#{lesMessages.general_prenom}" />:  <h:outputText value="#{sessionScope.loginBean.client.prenom}"/>
+		</div>
+       
+		<h2><h:outputText value="Règlement de votre commande"/></h2>
+		
+		<h:panelGrid columns="2"  id="panelMontants"  
+		    border="1" headerClass="LigneHeader"  rowClasses="LignesPaires, LignesImpaires">
+	
+			<f:facet name="header" >
+	    		<h:outputText value="Recapitulatif de votre commande"/>
+	  		</f:facet>
+	
+			<h:outputLabel value="Montant total HT : " />
+			<h:outputLabel value="#{magasinBean.montantTotal}" />
+			
+			<h:outputLabel value="Montant total TTC : " />
+			<h:outputLabel value="#{magasinBean.montantTotal * 1.19}" />
+			
+			<h:outputLabel value="Montant total TTC + frais de transport : " />
+			<h:outputLabel value="#{(magasinBean.montantTotal * 1.19) + 4.50}" />
+			   		 
+	    </h:panelGrid>
+		
+			<f:verbatim><br /> <br /></f:verbatim>
+		(Type CC / N° CC pour test : Visa / 4716718496946025)
+		 	<f:verbatim><br /><br /></f:verbatim>
+		 
+		<h:panelGrid columns="2"  id="panelPaiement"   border="1" footerClass="LigneFooter" 
+		headerClass="LigneHeader"  rowClasses="LignesPaires, LignesImpaires">
+	
+			<f:facet name="header">
+	    		<h:outputText value="Réglez votre commande"/>
+	  		</f:facet>	  		
+
+            <h:outputText value="Type de carte de crédit : "/>
+            <h:selectOneMenu value="#{paiementBean.typeCC}">
+                <f:selectItem itemValue="VISA" itemLabel="Visa"/>
+                <f:selectItem itemValue="MASTERCARD" itemLabel="Eurocard / MasterCard"/>
+                <f:selectItem itemValue="AMEX" itemLabel="American Express"/>                         
+                <f:selectItem itemValue="CB" itemLabel="Carte Bancaire"/>               
+                <f:selectItem itemValue="CA" itemLabel="Carte Aurore"/>
+            </h:selectOneMenu>
+
+			<h:outputLabel value="Numéro de carte de crédit :" /> 
+			<h:inputText id="numeCC" value="#{paiementBean.numCC}" required="true" /> 
+				
+			<h:outputLabel value="Nom du titulaire :" /> 
+			<h:inputText id="nomTit" value="#{paiementBean.nomcc}" required="true" />
+			 
+			<h:outputLabel value="Code de sécurité :" /> 
+			<h:inputText id="codeSecu" value="#{paiementBean.codesecu}" required="true" />
+				
+			<h:outputLabel value="Date d'expiration :" /> 
+			<h:inputText id="dateExpi" value="#{paiementBean.expirationDate}" required="true" >
+			 <f:convertDateTime pattern="MM/yyyy"/>
+			</h:inputText>	
+			
+			<f:facet name="footer">    	
+     		 <h:commandButton id="submit" value="Payer" action="#{paiementBean.payer}" />  
+     		 <h:commandButton value="Reset" type="reset"/>     		    		           
+            </f:facet>	
+						 
+	    </h:panelGrid>
+		         
+        </h:form>
+     </f:view>
+     </center>
+    </ui:define>
+</ui:composition>        

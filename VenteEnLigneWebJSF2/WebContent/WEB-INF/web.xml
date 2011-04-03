@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+ 
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+  </welcome-file-list>
+ 
+  <context-param>
+      <param-name>javax.faces.DEFAULT_SUFFIX</param-name>
+      <param-value>.xhtml</param-value>
+  </context-param>
+
+
+  <context-param>
+    <param-name>javax.faces.PROJECT_STAGE</param-name>
+    <param-value>Production</param-value>
+  </context-param>
+  
+  <!--  Pour rendre les tags de commentaires effectifs dans les fichiers XHTML -->
+  <context-param>
+   		    	<param-name>facelets.SKIP_COMMENTS</param-name>
+   		    	<param-value>true</param-value>
+  </context-param>
+
+  <servlet>
+    <servlet-name>Faces Servlet</servlet-name>
+    <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+  </servlet>
+ 
+  <servlet-mapping> 
+    <servlet-name>Faces Servlet</servlet-name>
+    <url-pattern>*.jsf</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <description></description>
+    <display-name>AfficheImageServlet</display-name>
+    <servlet-name>AfficheImageServlet</servlet-name>
+    <servlet-class>com.eni.dvtejb.clientJSF2.services.AfficheImageServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AfficheImageServlet</servlet-name>
+    <url-pattern>/AfficheImageServlet</url-pattern>
+  </servlet-mapping>
+   
+</web-app>

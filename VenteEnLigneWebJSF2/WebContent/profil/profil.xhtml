@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">    
+<ui:composition 
+		xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        template="/templates/template.xhtml">
+          
+ <ui:define name="titre">  <h:outputText value="Modifier mon profil"/> </ui:define>
+    <ui:define name="contenu">
+    
+    <center>
+    <f:view>
+    <f:loadBundle basename="com.eni.dvtejb.clientJSF2.messages" var="lesMessages"/>
+        <h:form  id="FormModifProfil">
+        
+        <div align="right" >
+		 <h:graphicImage url="/images/utilisateur.gif"  /><br />
+		 <h:outputText value="#{lesMessages.general_nom}" /> : <h:outputText value="#{sessionScope.loginBean.client.nom}"/><br/>
+		 <h:outputText value="#{lesMessages.general_prenom}" />:  <h:outputText value="#{sessionScope.loginBean.client.prenom}"/>
+		</div>
+
+     <h2> Modification de votre profil</h2>
+  <h:panelGrid columns="2" cellpadding="3px" styleClass="plGrid" headerClass="TableHeader" >    
+  				 <f:facet name="header"  >    
+               		<h:outputText value="Vos informations"/>    
+     			</f:facet> 
+   
+                <h:outputLabel for="leNom" value="Nom"/>
+                <h:inputText type="text" id="leNom"  value="#{loginBean.client.nom}" />
+
+				<h:outputLabel for="lePrenom" value="Prenom"/>
+                <h:inputText id="lePrenom"  value="#{loginBean.client.prenom}"/>
+                
+                <h:outputLabel for="lemail" value="Email"/>
+                <h:inputText  id="lemail"  value="#{loginBean.client.email}"/>
+                
+                <h:outputLabel for="lelogin" value="Login"/>
+                <h:inputText  id="lelogin"  value="#{loginBean.client.login}"/>
+                
+                <h:outputLabel for="lePassword" value="Password"/>
+                <h:inputText  id="lePassword"  value="#{loginBean.client.password}"/>
+                
+                <h:outputLabel for="leTitre" value="Titre"/>
+                <h:inputText  id="leTitre"  value="#{loginBean.client.titre}"/>
+                
+                <h:outputLabel for="leFax" value="Fax"/>
+                <h:inputText  id="leFax"  value="#{loginBean.client.fax}"/>
+                
+                <h:outputLabel for="leTelephone" value="Telephone"/>
+                <h:inputText  id="leTelephone"  value="#{loginBean.client.telephone}"/>
+     </h:panelGrid>
+     <br />
+     <h:panelGrid columns="2" cellpadding="3px" styleClass="plGrid" headerClass="TableHeader">    
+                 <f:facet name="header" >    
+               		<h:outputText value="Votre adresse"/>    
+     			</f:facet> 
+                
+                <h:outputLabel for="leCodepostal" value="Code postal"/>
+                <h:inputText  id="leCodepostal"  value="#{loginBean.adresse.codepostal}"/>
+                
+                <h:outputLabel for="leDepartement" value="Departement"/>
+                <h:inputText  id="leDepartement"  value="#{loginBean.adresse.departement}"/>
+                
+                <h:outputLabel for="leNumero" value="Numero"/>
+                <h:inputText  id="leNumero"  value="#{loginBean.adresse.numero}"/>
+                
+                <h:outputLabel for="lePays" value="Pays"/>
+                <h:inputText  id="lePays"  value="#{loginBean.adresse.pays}"/>
+                
+                <h:outputLabel for="laRue" value="Rue"/>
+                <h:inputText  id="laRue"  value="#{loginBean.adresse.rue}"/>
+               
+                <h:outputLabel for="laVille" value="Ville"/>
+                <h:inputText  id="laVille"  value="#{loginBean.adresse.ville}"/>
+
+      </h:panelGrid>	
+      
+             <h:commandButton value="Modifier" action="#{loginBean.sauverProfil}" >
+                	 <f:ajax  execute="@form " render=":FormModifProfil:finModifProfil" />
+                </h:commandButton>  
+        <h2><h:outputText value="#{loginBean.succesModifProfil}" id="finModifProfil" /></h2>
+        </h:form>
+     
+     </f:view>
+     </center>
+    </ui:define>
+</ui:composition>      

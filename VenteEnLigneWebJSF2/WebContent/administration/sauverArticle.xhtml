@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">    
+<ui:composition 
+		xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        template="/templates/templateAdmin.xhtml">
+          
+ <ui:define name="titre">  <h:outputText value="Modification / Création d'un article"/> </ui:define>
+    <ui:define name="contenu">
+    <center>
+    <f:view>
+    <f:loadBundle basename="com.eni.dvtejb.clientJSF2.messages" var="lesMessages"/>
+        <h:form  id="FormSauverArticle">
+        
+        <div align="right" >
+		 <h:graphicImage url="/images/utilisateur.gif"  /><br />
+		 <h:outputText value="#{lesMessages.general_nom}" /> : 
+		 <h:outputText value="#{sessionScope.loginBean.admin.nom}" render="#{not empty sessionScope.loginBean.admin.nom}" />
+		 <h:outputText value="#{sessionScope.loginBean.gest.nom}" render="#{not empty sessionScope.loginBean.gest.nom}" />		 
+		 <br/>
+		 <h:outputText value="#{lesMessages.general_prenom}" />:  
+		 <h:outputText value="#{sessionScope.loginBean.admin.prenom}" render="#{not empty sessionScope.loginBean.admin.prenom}" />
+		 <h:outputText value="#{sessionScope.loginBean.gest.prenom}" render="#{not empty sessionScope.loginBean.gest.prenom}" />	
+		</div>
+		
+		<h2><h:outputText value="Création" rendered="#{administrationBean.render1Art}" /> </h2>
+		<h2><h:outputText value=" Modification d'article" rendered="#{administrationBean.render2Art}" /> </h2>
+
+  <h:panelGrid columns="2" cellpadding="3px">    
+   
+                <h:outputLabel for="leNom" value="Nom"/>
+                <h:inputText type="text" id="leNom"  value="#{administrationBean.articleCourant.nom}" />
+
+				<h:outputLabel for="lePrix" value="Prix"/>
+                <h:inputText id="lePrix"  value="#{administrationBean.articleCourant.prix}"/>
+                
+                <h:outputLabel for="leProduitID" value="Produit ID"/>
+                <h:inputText id="leProduitID"  value="#{administrationBean.articleCourant.produitFk.produitid}"/>
+                 
+                <h:outputLabel for="leStockID" value="Stock ID"/>
+                <h:inputText id="leStockID"  value="#{administrationBean.articleCourant.stockFK.stockid}"/>
+                
+                <h:outputLabel for="laQtite" value="Quantite"/>
+                <h:inputText id="laQtite"  value="#{administrationBean.articleCourant.stockFK.quantite}"/>
+                                               
+                <h:commandButton value="Créer" action="#{administrationBean.sauverArticle}"  
+                disabled="#{administrationBean.desactive1Art}" />
+                <h:commandButton value="Modifier" action="#{administrationBean.sauverArticle}"  
+                disabled="#{administrationBean.desactive2Art}"  />
+     
+      </h:panelGrid>	
+        </h:form>
+       <h4> <h:messages showDetail ="true" /></h4>
+     </f:view>
+     </center>
+    </ui:define>
+</ui:composition>      

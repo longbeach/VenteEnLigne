@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">    
+<ui:composition 
+		xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        template="/templates/template.xhtml">
+          
+ <ui:define name="titre">  <h:outputText value="#{lesMessages.listeArticles_titre}"/> </ui:define>
+    <ui:define name="contenu">
+    <center>
+    <f:view >
+    <f:loadBundle basename="com.eni.dvtejb.clientJSF2.messages" var="lesMessages"/>
+        <h:form id="FormPanier">
+        
+        <div align="right" >
+		 <h:graphicImage url="/images/utilisateur.gif"  /><br />
+		 <h:outputText value="#{lesMessages.general_nom}" /> : <h:outputText value="#{sessionScope.loginBean.client.nom}"/><br/>
+		 <h:outputText value="#{lesMessages.general_prenom}" />:  <h:outputText value="#{sessionScope.loginBean.client.prenom}"/>
+		</div>
+       
+		<h2><h:outputText value="VOTRE PANIER"/></h2>
+                       
+         <h:graphicImage  url="../images/panierVide.jpg"  rendered="#{empty magasinBean.articlesPanier}"/>
+         <h4><h:outputText value="Votre panier est vide." rendered="#{empty magasinBean.articlesPanier}"/></h4>
+                        
+           <!--  TODO : franciser le style CSS -->
+           <h:dataTable id="tablePanier" value="#{magasinBean.articlesPanier}" rendered="#{not empty magasinBean.articlesPanier}" 
+	      var="articlePanier" bgcolor="#F1F1F1" border="10" cellpadding="5" cellspacing="3" first="0" width="50%" dir="LTR" frame="hsides"
+ 	      rules="all" summary="Ceci est la dataTable pour afficher le panier" rowClasses="TableRow1,TableRow2"
+          columnClasses="TableColumn" styleClass="TableClass" headerClass="TableHeader">    
+	       <h:column>    
+	           <f:facet name="header">    
+	               <h:outputText value="Id article"/>    
+	           </f:facet>                                                    
+	           <h:outputText value="#{articlePanier.article.articleid}"/>    
+	       </h:column>    
+	       <h:column>    
+	           <f:facet name="header">    
+	               <h:outputText value="Nom article"/>    
+	           </f:facet>                                                    
+	           <h:outputText value="#{articlePanier.article.nom}"/>    
+	       </h:column>   
+	       <h:column id="QtiteCol">    
+	           <f:facet name="header">    
+	               <h:outputText value="Quantite"/>    
+	           </f:facet>                                                    
+	           <!-- <h:inputText value="#{articlePanier.quantite}"/>    --> 
+	           <h:outputText value="#{articlePanier.quantite}"/> 
+	       </h:column>  
+	       <h:column>    
+	           <f:facet name="header">    
+	               <h:outputText value="Prix total"/>    
+	           </f:facet>                                                    
+	           <h:outputText value="#{articlePanier.quantite * articlePanier.article.prix}"/>    
+	       </h:column>  	
+	       <h:column>                                                            
+          		<h:commandLink  value="Supprimer"  action="#{magasinBean.supprimerArticle}" />   		   		  
+      	       </h:column>  	    
+      	       
+      	       <f:facet name="footer">
+      	       		<h:outputText id="leMontant" value="Montant total HT : #{magasinBean.montantTotal}" />
+      	       </f:facet>       	       
+		</h:dataTable>				
+		
+          <br /> <br />
+          <h:link outcome="listeArticles" >====  Ajouter un autre article ====</h:link>
+          <br /> <br />
+          <h:link outcome="paiement" >==== Régler ma commande ====</h:link>
+         
+        </h:form>
+     </f:view>
+     </center>
+    </ui:define>
+</ui:composition>

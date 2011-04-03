@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+	<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui=" http://java.sun.com/jsf/Facelets">
+  
+<h:head>
+  <title><h:outputText value="Inscription"/></title>
+   <link rel="stylesheet" type="text/css" href="../css/styles.css"  />
+</h:head>
+    <center>
+    <f:view  >
+     <f:loadBundle basename="com.eni.dvtejb.clientJSF2.messages" var="lesMessages"/>
+        <h:form id="Form1" >
+       <body>
+              
+       <h2> Inscription </h2>
+       <h4>Complétez les formulaires suivants : </h4>
+       
+  <h:panelGrid columns="2" id="loginpwd" bgcolor="DarkKhaki" border="1">
+  	 <f:facet name="header" >    
+               <h:outputText value="Etape 1 : Login et mot de passe"/>    
+     </f:facet>    
+     <h:outputText value="Login: *" />
+     <h:inputText id="login"  value="#{leClient.login}" required="true" >
+         	 <f:validateRequired disabled="true" />
+   </h:inputText>
+
+     <h:outputText value="Password: *" />
+     <h:inputText id="pwd"  value="#{leClient.password}" required="true"/>
+
+     <f:facet name="footer">
+   		<h:panelGroup style="display:block; text-align:center">
+   			 <h:commandButton id="submitLoginPwd" value="Valider" action="#{leClient.validerLoginPwd}" />
+        </h:panelGroup>
+     </f:facet>		
+  </h:panelGrid>
+  
+<br />
+
+  <h:panelGrid columns="2"  id="informations" bgcolor="DarkKhaki" rendered="#{leClient.loginPwdOK}" border="1">
+     <f:facet name="header" >    
+               <h:outputText value="Etape 2 : Informations"/>    
+     </f:facet> 
+     <h:outputText value="Nom: * " />
+     <h:inputText value="#{leClient.nom}"  required="true" />
+
+     <h:outputText value="Prenom: * " />
+     <h:inputText value="#{leClient.prenom}"   required="true"/>
+     
+     <h:outputText value="Titre: * " />
+     <h:inputText value="#{leClient.titre}"   required="true"/>
+
+     <h:outputText value="Email: * " />
+     <h:inputText value="#{leClient.email}"  required="true"/>
+     
+     <h:outputText value="Telephone: * " />
+     <h:inputText value="#{leClient.telephone}"  required="true"/>
+     
+     <h:outputText value="Fax: * " />
+     <h:inputText value="#{leClient.fax}"  required="true"/>
+      <f:facet name="footer">
+   		<h:panelGroup style="display:block; text-align:center">
+   			 <h:commandButton id="submitInfos" value="Valider" action="#{leClient.validerInfos}" />
+        </h:panelGroup>
+     </f:facet>	
+ </h:panelGrid>
+
+<br />
+
+  <h:panelGrid columns="2"  id="infosAdresse" bgcolor="DarkKhaki" rendered="#{leClient.infosOK}" border="1">
+     <f:facet name="header" >    
+               <h:outputText value="Etape 3 : Adresse"/>    
+     </f:facet> 
+     <h:outputText value="Code postal: * " />
+     <h:inputText id="cp" value="#{leClient.codepostal}"  required="true" />
+
+     <h:outputText value="Departement: * " />
+     <h:inputText value="#{leClient.departement}"  required="true"/>
+     
+     <h:outputText value="Numero: * " />
+     <h:inputText value="#{leClient.numero}"  required="true"/>
+
+     <h:outputText value="Pays: * " />
+     <h:inputText value="#{leClient.pays}"  required="true"/>
+     
+     <h:outputText value="Rue: * " />
+     <h:inputText value="#{leClient.rue}"  required="true"/>
+     
+     <h:outputText value="Ville: * " />
+     <h:inputText value="#{leClient.ville}"  required="true"/>
+      <f:facet name="footer">
+   		<h:panelGroup style="display:block; text-align:center">
+   			 <h:commandButton id="submitAdresse" value="Valider" action="#{leClient.validerAdresse}" />
+        </h:panelGroup>
+     </f:facet>	
+ </h:panelGrid>
+
+<br /> 
+
+	  <h:panelGroup style="display:block; text-align:center" rendered="#{leClient.adresseOK}">
+ 		<h:commandButton id="submitInscription" value="Valider l'inscription" action="#{leClient.validerInscription}" >
+ 			  <f:ajax  execute="@form " render=":Form1:finInscription" />
+ 		 </h:commandButton>
+      </h:panelGroup>
+
+    <h2><h:outputText value="#{leClient.succes}" id="finInscription" /></h2>
+ 
+  <h:messages  layout="table" />
+  
+    </body> 
+   </h:form>
+  </f:view>
+ </center>
+</html> 
