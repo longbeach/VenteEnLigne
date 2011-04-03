@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="1.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd">
+	
+	<persistence-unit name="CarnetContactsJavaEE" transaction-type="JTA">
+		 <provider>org.hibernate.ejb.HibernatePersistence</provider>		 
+	     <jta-data-source>java:/OracleDS</jta-data-source>		
+		 <class>com.eni.dvtejb31.ejb.entitybeans.Contact</class>
+		 	 	 
+	    <properties>  
+	      <property name="hibernate.transaction.manager_lookup_class" value="org.hibernate.transaction.JBossTransactionManagerLookup"/>
+	      <property name="hibernate.dialect" value="org.hibernate.dialect.Oracle9Dialect" />  
+	      <property name="hibernate.hbm2ddl.auto" value="update" />    
+	      <property name="hibernate.show_sql" value="true" /> 
+	     </properties>            
+	</persistence-unit>
+	
+<!--	<persistence-unit name="CarnetContactsJavaSE" transaction-type="RESOURCE_LOCAL">-->
+<!--		 <provider>org.hibernate.ejb.HibernatePersistence</provider>	 -->
+<!--		 <non-jta-data-source>java:/OracleDS</non-jta-data-source>	-->
+<!--		 <class>com.eni.dvtejb31.ejb.entitybeans.Contact</class>-->
+<!--		 	 -->
+<!--	    <properties>  -->
+<!--	      <property name="hibernate.connection.driver_class" value="oracle.jdbc.driver.OracleDriver" />  -->
+<!--	      <property name="hibernate.connection.username" value="hr" />  -->
+<!--	      <property name="hibernate.connection.password" value="toto" />  -->
+<!--	      <property name="hibernate.connection.url" value="jdbc:oracle:thin:@localhost:1521/XE" /> -->
+<!--	      <property name="hibernate.dialect" value="org.hibernate.dialect.Oracle9Dialect" />  -->
+<!--	      <property name="hibernate.hbm2ddl.auto" value="update" /> -->
+<!--	      <property name="hibernate.show_sql" value="true" /> -->
+<!--	     </properties> -->
+<!--	</persistence-unit>-->
+	
+</persistence>

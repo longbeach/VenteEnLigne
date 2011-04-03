@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+
+<ui:composition>
+	<h:head>
+		<h1><h:outputText value="Contact a modifier" /></h1>
+	</h:head>
+
+	<h:body>
+		<h:form id="form">
+
+
+			<h:panelGrid columns="2">
+			
+				<h:outputText id="titre-text" value="Titre" />
+				<h:inputText id="titre" value="#{contactBean.contactCourant.titre}" />
+				
+				<h:outputText id="nom-text" value="Nom" />
+				<h:inputText id="nom" value="#{contactBean.contactCourant.nom}" />
+				
+				<h:outputText id="prenom-text" value="Prenom" />
+				<h:inputText id="prenom" value="#{contactBean.contactCourant.prenom}" />
+				
+				<h:outputText id="email-text" value="Email" />
+				<h:inputText id="email" value="#{contactBean.contactCourant.email}" />
+				
+				<h:outputText id="telephone-text" value="Telephone" />
+				<h:inputText id="telephone" value="#{contactBean.contactCourant.telephone}" />
+
+				<h:commandButton id="sauver" action="#{contactBean.sauver}"		value="Sauver le contact" />
+				<h:commandButton id="annuler" action="#{contactBean.annuler}"	value="Annuler" />
+
+			</h:panelGrid>
+		</h:form>
+	</h:body>
+</ui:composition>
+</html>

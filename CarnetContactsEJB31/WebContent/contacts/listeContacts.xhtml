@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+
+<ui:composition>
+	<h:head>
+		<h1><h:outputText value="Liste des contacts" /></h1>
+	</h:head>
+
+	<h:body>
+		<h:form id="form">
+
+			<h:dataTable value="#{contactBean.contacts}"
+				var="contact" border="1">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Id" />
+					</f:facet>
+					<h:outputText value="#{contact.contactid}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Titre" />
+					</f:facet>
+					<h:outputText value="#{contact.titre}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Nom" />
+					</f:facet>
+					<h:outputText value="#{contact.nom}" />
+				</h:column>
+					<h:column>
+					<f:facet name="header">
+						<h:outputText value="Prenom" />
+					</f:facet>
+					<h:outputText value="#{contact.prenom}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Email" />
+					</f:facet>
+					<h:outputText value="#{contact.email}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Telephone" />
+					</f:facet>
+					<h:outputText value="#{contact.telephone}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Modifier" />
+					</f:facet>
+					<h:commandLink id="modifier" action="#{contactBean.modifier}" value="Modifier" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Supprimer" />
+					</f:facet>
+					<h:commandLink id="supprimer" action="#{contactBean.supprimer}" value="Supprimer" />
+				</h:column>
+
+			</h:dataTable>
+
+			<h:panelGrid columns="1">
+				<h:commandButton id="ajouter" action="#{contactBean.creer}"
+					value="Ajouter un contact" />
+			</h:panelGrid>
+
+		</h:form>
+	</h:body>
+</ui:composition>
+</html>
