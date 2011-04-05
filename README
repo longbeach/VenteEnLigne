@@ -2,7 +2,13 @@ This project hosts the code for the book "Les EJB 3 (avec Struts 2, JSF 2, Jaspe
 
 http://www.editions-eni.fr/Livres/Les-EJB-3-avec-Struts-2--JSF-2--JasperReports-3--Flex-3-Developpez-pour-le-web-par-l-exemple--3-applications-detaillees/.6_3a6222cf-b921-41f5-886c-c989f77ba994_75c514cc-b7b3-49ed-a7ca-c8e516ab7429_e5bf3eda-7ad1-4a29-a943-f93cf015b594_1_0_d9bd8b5e-f324-473f-b1fc-b41b421c950f.html
 
+Introduction
+============
+
 A shopping cart web application for selling products over the internet, declined in 3 versions for the front-end layer (Struts 2, JSF 2 and Flex 3). The business and persistence layers are based on EJB 3. 
+
+Details
+============
 
 I use the EJB container bundled with JBoss 6 application server to :
 - write the persistence layer using Entity beans, the JPQL language and the Java Persistence API
