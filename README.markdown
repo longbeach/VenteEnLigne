@@ -7,7 +7,9 @@ This project hosts the code for the book **Les EJB 3 (avec Struts 2, JSF 2, Jasp
 Introduction
 ============
 
-A shopping cart web application for selling products over the internet, declined in 3 versions for the front-end layer (Struts 2, JSF 2 and Flex 3). The business and persistence layers are based on EJB 3. 
+A shopping cart web application for selling products over the internet, declined in 3 versions for the front-end layer (Struts 2, JSF 2 and Flex 3). 
+
+The business and persistence layers are based on EJB 3. 
 
 I use the EJB container bundled with JBoss 6 application server to :
 
@@ -29,7 +31,9 @@ Installation
 ============
 
 The projects can be imported into Eclipse. You need to add the missing jars and configure the projects build paths.
+
 Compilation is done with Eclipse.
+
 I plan to mavenize all the projects in the future.
 
 Do you have a question ?
