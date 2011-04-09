@@ -10,16 +10,18 @@ Introduction
 A shopping cart web application for selling products over the internet, declined in 3 versions for the front-end layer (Struts 2, JSF 2 and Flex 3). The business and persistence layers are based on EJB 3. 
 
 I use the EJB container bundled with JBoss 6 application server to :
-- write the persistence layer using Entity beans, the JPQL language and the Java Persistence API
-- create business classes based on Session and Message-Driven beans
-- create a security policy with roles and permissions that are defined in properties file, a database or a LDAP
-- expose EJB 3 as web services
-- create asynchronous tasks with the help of EJB Timers
-- provide a little of aspect-oriented programming with interceptors 
+
+-   write the persistence layer using Entity beans, the JPQL language and the Java Persistence API
+-   create business classes based on Session and Message-Driven beans
+-   create a security policy with roles and permissions that are defined in properties file, a database or a LDAP
+-   expose EJB 3 as web services
+-   create asynchronous tasks with the help of EJB Timers
+-   provide a little of aspect-oriented programming with interceptors 
 
 I also use :
-- the GraniteDS framework to establish the communication between Java objects and Flex 3, to create rich interfaces (RIA).
-- the JasperReports framework to generate reports.
+
+-   the GraniteDS framework to establish the communication between Java objects and Flex 3, to create rich interfaces (RIA).
+-   the JasperReports framework to generate reports.
 
 Finally, the CarnetContactsEJB31 project demonstrates some of the new features brought by EJB 3.1
 
